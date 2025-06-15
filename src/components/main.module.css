@@ -1,0 +1,13 @@
+.main {
+    position: relative;
+    z-index: 0;
+    background-color: var(--primary-color);
+}
+.header{
+    background-image: url("../assets/herobg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    /* 'bg-hero-pattern bg-cover bg-no-repeat bg-center' */
+}

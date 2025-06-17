@@ -1,7 +1,7 @@
 .navbar {
   width: 100%;
   padding: 10px;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
 }
@@ -12,6 +12,7 @@
   justify-content: space-between;
   /* padding: 0 50px; */
   position: relative;
+  padding-right: 50px;
 }
 
 .logoContainer {

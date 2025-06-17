@@ -8,6 +8,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    position: relative;
     height: 100vh;
     /* background-color: black; */
     /* 'bg-hero-pattern bg-cover bg-no-repeat bg-center' */

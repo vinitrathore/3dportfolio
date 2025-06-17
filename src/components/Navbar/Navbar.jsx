@@ -62,6 +62,8 @@ const Navbar = () => {
         </div>
         {toggle && (
           <div className={`${styles.mobileMenu} ${toggle?styles.navGet:styles.navClose}`}>
+            
+            
             <ul className={styles.mobileList}>
               {navLinks.map((nav) => (
                 <li

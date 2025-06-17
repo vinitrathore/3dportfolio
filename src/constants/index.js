@@ -40,6 +40,13 @@ export const navLinks = [
   },
 ];
 
+export const skills =[
+  {id:1,name:"Software Engineer"},
+   {id:2,name:"Application Developer"},
+    {id:3,name:"Web Developer"},
+    //  {id:4,name:"MERN Stack Developer"},
+]
+
 const services = [
   {
     title: "Web Developer",

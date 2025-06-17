@@ -1,0 +1,24 @@
+.logoSpan {
+  font-size: 18px; /* match your existing style */
+  color: #000;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: 600;
+  font-family: monospace;
+  color: white;
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 2px;
+  width: 1px;
+  background-color: black;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

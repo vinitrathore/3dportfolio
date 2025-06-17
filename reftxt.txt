@@ -1,0 +1,89 @@
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import styles from "./Navbar.module.css";
+
+import { navLinks } from "../../constants";
+import { logo, menu, close } from "../../assets";
+
+const Navbar = () => {
+  const [active, setActive] = useState("");
+  const [toggle, setToggle] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <nav class={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
+      <div class={styles.navContainer}>
+        <Link
+          to="/"
+          class={styles.logoContainer}
+          onClick={() => {
+            setActive("");
+            window.scrollTo(0, 0);
+          }}
+        >
+          <img src={logo} alt="logo" class={styles.logoImage} />
+          <p class={styles.logoText}>
+            Vinit &nbsp;
+            <span class={styles.logoSpan}>| Software Developer</span>
+          </p>
+        </Link>
+
+        <ul class={styles.navLinks}>
+          {navLinks.map((nav) => (
+            <li
+              key={nav.id}
+              class={`${styles.navLink} ${
+                active === nav.title ? styles.activeLink : ""
+              }`}
+              onClick={() => setActive(nav.title)}
+            >
+              <a href={`#${nav.id}`}>{nav.title}</a>
+            </li>
+          ))}
+        </ul>
+
+        {/* Mobile Menu */}
+        <div class={styles.mobileMenuToggle}>
+          <img
+            src={toggle ? close : menu}
+            alt="menu"
+            class={styles.menuIcon}
+            onClick={() => setToggle(!toggle)}
+          />
+
+          {toggle && (
+            <div class={styles.mobileMenu}>
+              <ul class={styles.mobileList}>
+                {navLinks.map((nav) => (
+                  <li
+                    key={nav.id}
+                    class={`${styles.mobileLink} ${
+                      active === nav.title ? styles.active : styles.inactiveLink
+                    }`}
+                    onClick={() => {
+                      setToggle(false);
+                      setActive(nav.title);
+                    }}
+                  >
+                    <a href={`#${nav.id}`}>{nav.title}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;

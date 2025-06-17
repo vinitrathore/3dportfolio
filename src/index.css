@@ -70,10 +70,14 @@ button:focus-visible {
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-body{
-  /* background-color: black; */
-  /* color: white; */
+
+html , body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
 }
 :root {
   --color-primary: #050816;

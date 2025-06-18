@@ -1,4 +1,88 @@
-.hero {
-    color: white;
-    padding-top: 60px;
+/* Hero.module.css */
+
+.heroSection {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.absoluteContainer {
+  position: absolute;
+  inset: 0;
+  top: 120px;
+  max-width: 1120px; /* equivalent to max-w-7xl */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 0 2rem;
+}
+
+.lineContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.25rem;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #915EFF;
+}
+
+.violetGradient {
+  width: 4px;
+  height: 10rem;
+  background: linear-gradient(to bottom, #915EFF, transparent);
+}
+
+.heroHeadText {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+}
+
+.heroSubText {
+  font-size: 1.25rem;
+  color: #ffffffb3;
+  margin-top: 0.5rem;
+}
+
+.scrollContainer {
+  position: absolute;
+  bottom: 8rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .scrollContainer {
+    bottom: 2.5rem;
+  }
+}
+
+.scrollBox {
+  width: 35px;
+  height: 64px;
+  border-radius: 24px;
+  border: 4px solid #915EFF;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0.5rem;
+}
+
+.scrollDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #915EFF;
+  margin-bottom: 0.25rem;
 }

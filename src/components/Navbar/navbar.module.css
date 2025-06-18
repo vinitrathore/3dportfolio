@@ -49,7 +49,16 @@
   width: 250px;
   align-items: center;
   justify-content: space-evenly;
+  transition: all 1s ease-in-out;
 }
+.navLinks .anc{
+    transition: all 0.3s ease-in-out;
+}
+.navLinks .anc:hover {
+  font-size: 18px;
+  font-weight: 400;
+}
+
 
 .navLinks li a {
   color: white;

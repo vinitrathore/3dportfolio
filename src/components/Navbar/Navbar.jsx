@@ -35,7 +35,7 @@ const Navbar = () => {
           <img src={logo} alt="logo" className={styles.logoImage} />
           <p className={styles.logoText}>
             Vinit&nbsp;
-            <span className={styles.logoSpan}>| Software Developer</span>
+            <span className={styles.logoSpan}>| Full Stack Developer</span>
           </p>
         </Link>
 
@@ -46,7 +46,7 @@ const Navbar = () => {
               className={`${styles.navLink} ${active === nav.title ? styles.activeLink : ""}`}
               onClick={() => setActive(nav.title)}
             >
-              <a href={`#${nav.id}`}>{nav.title}</a>
+              <a  className={styles.anc} href={`#${nav.id}`}>{nav.title}</a>
             </li>
           ))}
         </ul>

@@ -1,3 +1,74 @@
-.about{
-    color:blue
+.about {
+  padding: 2rem;
+  background-color: #0f0f0f;
+  color: #fff;
+}
+
+.sectionSubText {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+
+.sectionHeadText {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.description {
+  margin-top: 1rem;
+  font-size: 17px;
+  line-height: 30px;
+  color: #ccc;
+  max-width: 700px;
+}
+
+.screenInfo {
+  margin-top: 2rem;
+  font-size: 18px;
+  color: #bbb;
+}
+
+.cardContainer {
+  margin-top: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+}
+
+/* ServiceCard Styles */
+.cardTilt {
+  width: 100%;
+  max-width: 250px;
+}
+
+.cardWrapper {
+  background: linear-gradient(to right, #00ffbd, #ff00c8);
+  padding: 1px;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+}
+
+.cardInner {
+  background-color: #1e1e1e;
+  border-radius: 20px;
+  padding: 2rem 3rem;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.cardIcon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.cardTitle {
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
 }

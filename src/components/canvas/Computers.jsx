@@ -6,24 +6,51 @@ import CanvasLoader from "./Loader";
 
 const Computers = ({ isMobile }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
+  const width = window.innerWidth;
 
   return (
     <mesh>
-      <hemisphereLight intensity={0.15} groundColor='black' />
+      <hemisphereLight intensity={0.5} groundColor='black' />
       <spotLight
         position={[-20, 50, 10]}
-        angle={0.12}
+        angle={0.15}
         penumbra={1}
         intensity={1}
         castShadow
         shadow-mapSize={1024}
       />
-      <pointLight intensity={1} />
+      <ambientLight intensity={Math.PI / 1.5} />
+      <pointLight intensity={5} />
       <primitive
         object={computer.scene}
-        scale={isMobile ? 0.7 : 0.75}
-        position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
-        rotation={[-0.01, -0.2, -0.1]}
+        scale={
+          width <= 360
+            ? 0.35
+            : width <= 601
+              ? 0.55
+              : width <= 768
+                ? 0.65
+                : 0.75
+        }
+        position={
+  width <= 360
+    ? [-3.7, -2, -1.5]
+    : width <= 601
+    ? [-3.3, -1, -1.5]
+    : width <= 768
+    ? [-3.2, -2.8, -1.5]
+    : [-3.0, -2.6, -1.5]
+}
+
+rotation={
+  width <= 360
+    ? [-0.02, -0.3, -0.1]
+    : width <= 601
+    ? [-0.015, -0.55, -0.1]
+    : width <= 768
+    ? [-0.01, -0.2, -0.1]
+    : [-0.005, -0.15, -0.1]
+}
       />
     </mesh>
   );
@@ -34,7 +61,7 @@ const ComputersCanvas = () => {
 
   useEffect(() => {
     // Add a listener for changes to the screen size
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
+    const mediaQuery = window.matchMedia("(max-width: 600px)");
 
     // Set the initial value of the `isMobile` state variable
     setIsMobile(mediaQuery.matches);

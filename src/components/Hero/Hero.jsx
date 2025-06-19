@@ -7,6 +7,9 @@ const Hero = () => {
   return (
     <section className={styles.heroSection}>
       <div className={styles.absoluteContainer}>
+      {/* <h2 style={{color:"white"}}>{window.innerWidth}</h2>
+      <h2 style={{color:"white"}}>{window.innerHeight}</h2> */}
+      
         <div className={styles.lineContainer}>
           <div className={styles.circle} />
           <div className={styles.violetGradient} />
@@ -17,10 +20,9 @@ const Hero = () => {
             Hi, I'm <span style={{ color: "#915EFF" }}>Vinit</span>
           </h1>
           <p className={styles.heroSubText}>
-            I develop <span className={styles.highlight}>Full Stack</span> applications, <br className="sm:block hidden" />
-            user interfaces, and interactive web experiences.
+            I develop 3D visuals, user <br className="sm:block hidden" />
+            interfaces and web applications.
           </p>
-
         </div>
       </div>
 

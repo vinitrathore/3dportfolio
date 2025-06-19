@@ -1,0 +1,16 @@
+.sectionWrapper {
+  padding: 40px 20px;
+  max-width: 1120px; /* like max-w-7xl */
+  margin: 0 auto;
+  position: relative;
+  z-index: 0;
+}
+
+.hashSpan {
+  display: block;
+  position: absolute;
+  top: -100px; /* adjust if your navbar height is fixed */
+  height: 100px;
+  width: 100%;
+  visibility: hidden;
+}

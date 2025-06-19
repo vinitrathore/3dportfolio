@@ -1,3 +1,82 @@
-.works{
-    color: red;
+.card {
+  background-color: var(--tertiary);
+  padding: 20px;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 360px;
+}
+
+.cardImageContainer {
+  position: relative;
+  width: 100%;
+  height: 230px;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.cardImgHover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.75rem;
+}
+
+.githubIcon {
+  background: linear-gradient(to right, #000, #111);
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.projectContent {
+  margin-top: 1.25rem;
+}
+
+.projectTitle {
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.projectDescription {
+  margin-top: 0.5rem;
+  color: var(--secondary);
+  font-size: 14px;
+}
+
+.projectTags {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.overviewTextContainer {
+  width: 100%;
+  display: flex;
+}
+
+.overviewText {
+  margin-top: 0.75rem;
+  color: var(--secondary);
+  font-size: 17px;
+  max-width: 768px;
+  line-height: 30px;
+}
+
+.projectsContainer {
+  margin-top: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
 }

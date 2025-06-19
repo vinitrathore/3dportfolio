@@ -1,126 +1,81 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import styles from "./Navbar.module.css";
+import React, { Suspense, useEffect, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
-import { navLinks } from "../../constants";
-import { logo, menu, close } from "../../assets";
+import CanvasLoader from "./Loader";
 
-const Navbar = () => {
-  const [active, setActive] = useState("");
-  const [toggle, setToggle] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 100);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+const Computers = ({ isMobile }) => {
+  const computer = useGLTF("./desktop_pc/scene.gltf");
 
   return (
-    <nav class={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
-      <div class={styles.navContainer}>
-        <Link
-          to="/"
-          class={styles.logoContainer}
-          onClick={() => {
-            setActive("");
-            window.scrollTo(0, 0);
-          }}
-        >
-          <img src={logo} alt="logo" class={styles.logoImage} />
-          <p class={styles.logoText}>
-            Vinit &nbsp;
-            <span class={styles.logoSpan}>| Software Developer</span>
-          </p>
-        </Link>
-
-        <ul class={styles.navLinks}>
-          {navLinks.map((nav) => (
-            <li
-              key={nav.id}
-              class={`${styles.navLink} ${
-                active === nav.title ? styles.activeLink : ""
-              }`}
-              onClick={() => setActive(nav.title)}
-            >
-              <a href={`#${nav.id}`}>{nav.title}</a>
-            </li>
-          ))}
-        </ul>
-
-        {/* Mobile Menu */}
-        <div class={styles.mobileMenuToggle}>
-          <img
-            src={toggle ? close : menu}
-            alt="menu"
-            class={styles.menuIcon}
-            onClick={() => setToggle(!toggle)}
-          />
-
-          {toggle && (
-            <div class={styles.mobileMenu}>
-              <ul class={styles.mobileList}>
-                {navLinks.map((nav) => (
-                  <li
-                    key={nav.id}
-                    class={`${styles.mobileLink} ${
-                      active === nav.title ? styles.active : styles.inactiveLink
-                    }`}
-                    onClick={() => {
-                      setToggle(false);
-                      setActive(nav.title);
-                    }}
-                  >
-                    <a href={`#${nav.id}`}>{nav.title}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      </div>
-    </nav>
+    <mesh>
+      <hemisphereLight intensity={0.5} groundColor='black' />
+      <spotLight
+        position={[-20, 50, 10]}
+        angle={0.15}
+        penumbra={1}
+        intensity={1}
+        castShadow
+        shadow-mapSize={1024}
+      />
+      <ambientLight intensity={Math.PI / 1.5} /> 
+      <pointLight intensity={5} />
+      <primitive
+        object={computer.scene}
+        scale={isMobile ? 0.5 : 0.55}
+        position={isMobile ? [0, -3, -2.2] : [0, -2.7, -1.5]}
+        rotation={[-0.01, -0.2, -0.1]}
+      />
+    </mesh>
   );
 };
 
-export default Navbar;
+const ComputersCanvas = () => {
+  const [isMobile, setIsMobile] = useState(false);
 
+  useEffect(() => {
+    // Add a listener for changes to the screen size
+    const mediaQuery = window.matchMedia("(max-width: 500px)");
 
+    // Set the initial value of the `isMobile` state variable
+    setIsMobile(mediaQuery.matches);
 
+    // Define a callback function to handle changes to the media query
+    const handleMediaQueryChange = (event) => {
+      setIsMobile(event.matches);
+    };
 
-// src/components/canvas/Computers.jsx
-import React, { useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+    // Add the callback function as a listener for changes to the media query
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
 
-function RotatingBox() {
-  const meshRef = useRef();
-
-  useFrame(() => {
-    meshRef.current.rotation.x += 0.01;
-    meshRef.current.rotation.y += 0.01;
-  });
+    // Remove the listener when the component is unmounted
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
+  }, []);
 
   return (
-    <mesh ref={meshRef}>
-      <boxGeometry args={[2, 2, 2]} />
-      <meshStandardMaterial color="#915EFF" />
-    </mesh>
-  );
-}
+    <Canvas
+      frameloop='demand'
+      shadows
+      dpr={[1, 2]}
+      camera={{ position: [20, 3, 5], fov: 25 }}
+      gl={{ preserveDrawingBuffer: true }}
+    >
+      <Suspense fallback={<CanvasLoader />}>
+        <OrbitControls
+          enableZoom={false}
+          maxPolarAngle={Math.PI / 2}
+          minPolarAngle={Math.PI / 2}
+        />
+        <Computers isMobile={isMobile} />
+      </Suspense>
 
-function Computers() {
-  return (
-    <div style={{ width: "100%", height: "100vh" }}>
-      <Canvas camera={{ position: [5, 2, 5], fov: 50 }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 5, 5]} intensity={1} />
-        <RotatingBox />
-      </Canvas>
-    </div>
+      <Preload all />
+    </Canvas>
   );
-}
+};
 
-export default Computers;
+export default ComputersCanvas;
+
+        position={isMobile ? [0, -3, -2.2] : [-2, -2.7, -1.5]}

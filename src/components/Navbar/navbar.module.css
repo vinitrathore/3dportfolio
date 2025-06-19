@@ -5,6 +5,7 @@
  position: fixed;
  top: 0;
  left: 0;
+ z-index: 1000;
 }
 
 .navContainer {
@@ -23,7 +24,7 @@
   justify-content: space-evenly;
   text-decoration: none;
   color: white;
-  width: 250px;
+  width: 270px;
 
 }
 

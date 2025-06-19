@@ -9,20 +9,24 @@ import Feedback from './Feedback/Feedback';
 import Contact from './Contact/Contact';
 import Loader from './Loader/Loader';
 import styles from "./main.module.css"
+import Stars from './canvas/Stars';
 function Main() {
     return (
-        <div class={styles.main}>
-            <div class={styles.header}>
+        <div className={styles.main}>
+            <div className={styles.header}>
                 <Navbar />
                 <Hero />
             </div>
-            {/* <About />
+            <About />
             <Experience />
             <Tech />
             <Works />
             <Feedback />
-            <Contact />
-            <Loader /> */}
+            <div style={{ position: "relative", zIndex: 0 }}>
+
+                <Contact />
+                <Stars />
+            </div>
         </div>
     )
 }

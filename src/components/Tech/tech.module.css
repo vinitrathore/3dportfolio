@@ -1,3 +1,12 @@
-.tech{
-    color: blue;
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem; /* approx 10 from Tailwind (40px) */
+}
+
+.item {
+  width: 7rem;  /* 28 * 0.25rem = 7rem */
+  height: 7rem;
 }

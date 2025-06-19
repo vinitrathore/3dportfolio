@@ -1,3 +1,66 @@
-.experience{
-    color: blue;
+/* Experience.module.css */
+.sectionSubText {
+  color: #aaa6c3;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.sectionHeadText {
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.centerText {
+  text-align: center;
+}
+
+.timelineContainer {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardTitle {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.cardCompany {
+  color: #aaa6c3;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.cardIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.cardImage {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.cardPoints {
+  margin-top: 20px;
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.cardPoint {
+  color: #f3f3f3;
+  font-size: 14px;
+  padding-left: 4px;
+  letter-spacing: 0.5px;
 }

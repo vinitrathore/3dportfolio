@@ -1,3 +1,4 @@
-.loader{
-    color: blue;
+#loader{
+    color: white;
+    height: 100vh;
 }

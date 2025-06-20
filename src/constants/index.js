@@ -24,7 +24,10 @@ import {
   tripguide,
   threejs,
 } from "../assets";
-
+export const urls ={
+  postUrl:`https://script.google.com/macros/s/AKfycbxGmQGKp5goq8KxwgkkgP-Za3AVPOKpGPPEwqsy3CAzz2xqO4P_9ZPw_YWhmqBjDPar/exec`,
+  getUrl:`https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLg2kDkD3b3-ch0bzPtHoE4b30PLUH3fy__TUjNh1LPFrF9PMclrDdf8g4Swg1JqI6Qnj9jQNx0B-ZgwrQtwRSCWK6-W6yp-GfqdQCwLXIQepJAz39v1J9ZtQKrVfQUU9_6u2GAeEjx8zqh9QjNnyVSIRLj-vsqaEV7s-fX6Mdf3KdhVzg93JvzPfUzFdsozAgMoJg4kdSeLnaRpCNijcgmovQ71fZOsLG2X6XvOtbusHkBMaWHf8cDcd3ExATaTRHAtEIzcDaAsRhSxfN0YLBdA3djcIw&lib=MH46NatNxNwTQpBIwepAmnOdzRm4IKlxF`
+}
 export const navLinks = [
   {
     id: "about",
@@ -268,5 +271,7 @@ const projects = [
     source_code_link: "https://github.com/",
   },
 ];
+
+
 
 export { services, technologies, experiences, testimonials, projects };

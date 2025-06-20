@@ -4,6 +4,7 @@
   flex-direction: column-reverse;
   gap: 2.5rem;
   overflow: hidden;
+  color: white;
 }
 
 @media (min-width: 1280px) {

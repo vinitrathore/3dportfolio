@@ -80,7 +80,7 @@ body {
   height: 100%;
   overflow-x: hidden;
   scroll-behavior: smooth;
-
+  color: white;
   background-color: var(--color-primary);
 }
 

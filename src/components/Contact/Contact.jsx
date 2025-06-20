@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 
+import { urls } from "../../constants"
 // import { styles } from "../styles";
 import { EarthCanvas } from "../../components/canvas";
 import { SectionWrapper } from "../../HOC";
@@ -24,36 +24,69 @@ const Contact = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: "JavaScript Mastery",
-          from_email: form.email,
-          to_email: "sujata@jsmastery.pro",
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false);
-          alert("Thank you. I will get back to you as soon as possible.");
-          setForm({ name: "", email: "", message: "" });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-          alert("Ahh, something went wrong. Please try again.");
-        }
-      );
+    try {
+      const res = await fetch(urls.postUrl, {
+        method: "POST",
+        // headers: {
+        //   "Content-Type": "application/json", // Add content type if sending JSON
+        // },
+        body: JSON.stringify(form), // Convert form data to JSON string
+
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+
+      const data = await res.json(); // Corrected: .json() takes no arguments
+      // console.log(data);
+      setForm({
+        name: "",
+        email: "",
+        message: "",
+      })
+      alert("email send successfully Vinit will contact you soon")
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  // const handleSubmit = (e) => {
+  // e.preventDefault();
+  // setLoading(true);
+
+  //   emailjs
+  //     .send(
+  //       import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+  //       import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+  //       {
+  //         from_name: form.name,
+  //         to_name: "JavaScript Mastery",
+  //         from_email: form.email,
+  //         to_email: "sujata@jsmastery.pro",
+  //         message: form.message,
+  //       },
+  //       import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+  //     )
+  //     .then(
+  //       () => {
+  //         setLoading(false);
+  //         alert("Thank you. I will get back to you as soon as possible.");
+  //         setForm({ name: "", email: "", message: "" });
+  //       },
+  //       (error) => {
+  //         setLoading(false);
+  //         console.error(error);
+  //         alert("Ahh, something went wrong. Please try again.");
+  //       }
+  //     );
+  // };
 
   return (
     <div className={styles.container}>

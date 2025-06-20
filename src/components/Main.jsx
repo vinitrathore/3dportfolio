@@ -10,6 +10,7 @@ import Contact from './Contact/Contact';
 import Loader from './Loader/Loader';
 import styles from "./main.module.css"
 import Stars from './canvas/Stars';
+import Test from './Test';
 function Main() {
     return (
         <div className={styles.main}>
@@ -23,10 +24,13 @@ function Main() {
             <Works />
             <Feedback />
             <div style={{ position: "relative", zIndex: 0 }}>
+                    <Contact />
+             
 
-                <Contact />
-                <Stars />
+                    <Stars />
+
             </div>
+
         </div>
     )
 }

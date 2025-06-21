@@ -27,34 +27,38 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+if(form.name && form.email&& form.message){
 
-    try {
-      const res = await fetch(urls.postUrl, {
-        method: "POST",
-        // headers: {
-        //   "Content-Type": "application/json", // Add content type if sending JSON
-        // },
-        body: JSON.stringify(form), // Convert form data to JSON string
+  try {
+    const res = await fetch(urls.postUrl, {
+      method: "POST",
+      // headers: {
+      //   "Content-Type": "application/json", // Add content type if sending JSON
+      // },
+      body: JSON.stringify(form), // Convert form data to JSON string
 
-      });
+    });
 
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-
-      const data = await res.json(); // Corrected: .json() takes no arguments
-      // console.log(data);
-      setForm({
-        name: "",
-        email: "",
-        message: "",
-      })
-      alert("email send successfully Vinit will contact you soon")
-    } catch (error) {
-      console.error("Error:", error);
-    } finally {
-      setLoading(false);
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
     }
+
+    const data = await res.json(); // Corrected: .json() takes no arguments
+    // console.log(data);
+    setForm({
+      name: "",
+      email: "",
+      message: "",
+    })
+    alert("email send successfully Vinit will contact you soon")
+  } catch (error) {
+    console.error("Error:", error);
+  } finally {
+    setLoading(false);
+  }
+}else{
+  alert("fill all required field");
+}
   };
 
   // const handleSubmit = (e) => {

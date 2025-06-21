@@ -7,9 +7,7 @@ const Hero = () => {
   return (
     <section className={styles.heroSection}>
       <div className={styles.absoluteContainer}>
-      {/* <h2 style={{color:"white"}}>{window.innerWidth}</h2>
-      <h2 style={{color:"white"}}>{window.innerHeight}</h2> */}
-      
+            
         <div className={styles.lineContainer}>
           <div className={styles.circle} />
           <div className={styles.violetGradient} />
@@ -26,7 +24,9 @@ const Hero = () => {
         </div>
       </div>
 
+
       <ComputersCanvas />
+
 
       <div className={styles.scrollContainer}>
         <a href="#about">

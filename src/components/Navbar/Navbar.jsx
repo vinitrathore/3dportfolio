@@ -29,6 +29,7 @@ const Navbar = () => {
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
+            window.location.reload()
             navigate("/")
           }}
         >

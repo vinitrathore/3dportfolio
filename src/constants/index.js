@@ -70,6 +70,7 @@ const services = [
 ];
 
 const technologies = [
+ 
   {
     name: "HTML 5",
     icon: html,
@@ -98,6 +99,7 @@ const technologies = [
     name: "Tailwind CSS",
     icon: tailwind,
   },
+  
   {
     name: "Node JS",
     icon: nodejs,

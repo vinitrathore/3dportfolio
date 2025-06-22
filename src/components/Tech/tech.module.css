@@ -5,6 +5,13 @@
   justify-content: center;
   gap: 2.5rem; /* approx 10 from Tailwind (40px) */
 }
+.canvasWrapper {
+  width: 100%;
+  height: 100vh; /* Ensure it takes space */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .item {
   width: 7rem;  /* 28 * 0.25rem = 7rem */

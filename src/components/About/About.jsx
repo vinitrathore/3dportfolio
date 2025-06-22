@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {Tilt} from 'react-tilt';
+import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
 
 import styles from './about.module.css'; // Your CSS Module
@@ -50,14 +50,10 @@ const About = () => {
         variants={fadeIn('', '', 0.1, 1)}
         className={styles.description}
       >
-        I'm a skilled software developer with experience in TypeScript and
-        JavaScript, and expertise in frameworks like React, Node.js, and
-        Three.js. I'm a quick learner and collaborate closely with clients to
-        create efficient, scalable, and user-friendly solutions that solve
-        real-world problems. Let's work together to bring your ideas to life!
+        I'm a MERN stack developer specializing in web and mobile app development using React.js, Node.js, MongoDB, and React Native. I build scalable, user-friendly solutions that help businesses grow and operate efficiently. Let’s collaborate to turn your business idea into a powerful digital product.
       </motion.p>
 
-      
+
 
       <div className={styles.cardContainer}>
         {services.map((service, index) => (

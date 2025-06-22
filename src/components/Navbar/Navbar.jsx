@@ -66,6 +66,7 @@ const Navbar = () => {
             
             
             <ul className={styles.mobileList}>
+              
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}

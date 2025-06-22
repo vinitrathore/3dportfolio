@@ -15,82 +15,70 @@ const Contact = () => {
     name: "",
     email: "",
     message: "",
+    phone: ""
   });
 
   const [loading, setLoading] = useState(false);
 
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   if(name===phone){
+  //     value.length===10
+  //   }
+  //   setForm({ ...form, [name]: value });
+  // };
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  };
+  const { name, value } = e.target;
+
+  // If input is phone, restrict to 10 digits
+  if (name === "phone") {
+    if (value.length > 10) return; // Prevent updating state if more than 10 digits
+    if (!/^\d*$/.test(value)) return; // Optional: block non-numeric input
+  }
+
+  setForm({ ...form, [name]: value });
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-if(form.name && form.email&& form.message){
+   if (form.name && form.email && form.message && form.phone)
+{
 
-  try {
-    const res = await fetch(urls.postUrl, {
-      method: "POST",
-      // headers: {
-      //   "Content-Type": "application/json", // Add content type if sending JSON
-      // },
-      body: JSON.stringify(form), // Convert form data to JSON string
+      try {
+        const res = await fetch(urls.postUrl, {
+          method: "POST",
+          // headers: {
+          //   "Content-Type": "application/json", // Add content type if sending JSON
+          // },
+          body: JSON.stringify(form), // Convert form data to JSON string
 
-    });
+        });
 
-    if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+
+        const data = await res.json(); // Corrected: .json() takes no arguments
+        // console.log(data);
+        setForm({
+          name: "",
+          email: "",
+          message: "",
+          phone: "",
+        });
+
+        alert("Information send successfully.")
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      alert("fill all required field");
     }
-
-    const data = await res.json(); // Corrected: .json() takes no arguments
-    // console.log(data);
-    setForm({
-      name: "",
-      email: "",
-      message: "",
-    })
-    alert("email send successfully Vinit will contact you soon")
-  } catch (error) {
-    console.error("Error:", error);
-  } finally {
-    setLoading(false);
-  }
-}else{
-  alert("fill all required field");
-}
   };
-
-  // const handleSubmit = (e) => {
-  // e.preventDefault();
-  // setLoading(true);
-
-  //   emailjs
-  //     .send(
-  //       import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-  //       import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-  //       {
-  //         from_name: form.name,
-  //         to_name: "JavaScript Mastery",
-  //         from_email: form.email,
-  //         to_email: "sujata@jsmastery.pro",
-  //         message: form.message,
-  //       },
-  //       import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-  //     )
-  //     .then(
-  //       () => {
-  //         setLoading(false);
-  //         alert("Thank you. I will get back to you as soon as possible.");
-  //         setForm({ name: "", email: "", message: "" });
-  //       },
-  //       (error) => {
-  //         setLoading(false);
-  //         console.error(error);
-  //         alert("Ahh, something went wrong. Please try again.");
-  //       }
-  //     );
-  // };
 
   return (
     <div className={styles.container}>
@@ -126,6 +114,18 @@ if(form.name && form.email&& form.message){
               value={form.email}
               onChange={handleChange}
               placeholder="What's your web address?"
+              className={styles.input}
+            />
+          </label>
+
+          <label className={styles.label}>
+            <span className={styles.labelText}>Your Phone</span>
+            <input
+              type='text'
+              name='phone'
+              value={form.phone}
+              onChange={handleChange}
+              placeholder="What's your contact number?"
               className={styles.input}
             />
           </label>

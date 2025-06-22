@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <section className={styles.heroSection}>
       <div className={styles.absoluteContainer}>
-            
+
         <div className={styles.lineContainer}>
           <div className={styles.circle} />
           <div className={styles.violetGradient} />
@@ -18,9 +18,9 @@ const Hero = () => {
             Hi, I'm <span style={{ color: "#915EFF" }}>Vinit</span>
           </h1>
           <p className={styles.heroSubText}>
-            I develop 3D visuals, user <br className="sm:block hidden" />
-            interfaces and web applications.
-          </p>
+            {/* I develop 3D visuals, user <br className="sm:block hidden" />
+            interfaces and web applications. */}
+            I build web and mobile apps to grow and streamline businesses.          </p>
         </div>
       </div>
 

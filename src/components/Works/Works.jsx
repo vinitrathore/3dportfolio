@@ -1,5 +1,5 @@
 import React from "react";
-import {Tilt} from "react-tilt";
+import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
 
 import styles from "./Works.module.css";
@@ -34,7 +34,7 @@ const ProjectCard = ({
             className={styles.cardImage}
           />
 
-          <div className={styles.cardImgHover}>
+          {/* <div className={styles.cardImgHover}>
             <div
               onClick={() => window.open(source_code_link, "_blank")}
               className={styles.githubIcon}
@@ -45,7 +45,7 @@ const ProjectCard = ({
                 style={{ width: "50%", height: "50%", objectFit: "contain" }}
               />
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className={styles.projectContent}>
@@ -78,10 +78,7 @@ const Works = () => {
 
       <div className={styles.overviewTextContainer}>
         <motion.p variants={fadeIn("", "", 0.1, 1)} className={styles.overviewText}>
-          Following projects showcases my skills and experience through real-world
-          examples of my work. Each project is briefly described with links to code
-          repositories and live demos in it. It reflects my ability to solve complex
-          problems, work with different technologies, and manage projects
+          The following projects highlight my skills and experience through real-world applications. Each project demonstrates my ability to solve complex problems, work with diverse technologies, and deliver impactful solutions tailored to business needs.
           effectively.
         </motion.p>
       </div>

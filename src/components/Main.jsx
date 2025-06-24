@@ -13,7 +13,7 @@ import Stars from './canvas/Stars';
 function Main() {
     return (
         <div className={styles.main}>
-            <div className={styles.header}>
+            <div className={styles.header} >
                 <Navbar />
                 <Hero />
             </div>

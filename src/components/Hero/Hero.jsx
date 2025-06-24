@@ -6,6 +6,7 @@ import { ComputersCanvas } from "../../components/canvas";
 const Hero = () => {
   return (
     <section className={styles.heroSection}>
+   
       <div className={styles.absoluteContainer}>
 
         <div className={styles.lineContainer}>
@@ -17,6 +18,7 @@ const Hero = () => {
           <h1 className={styles.heroHeadText}>
             Hi, I'm <span style={{ color: "#915EFF" }}>Vinit</span>
           </h1>
+             
           <p className={styles.heroSubText}>
             {/* I develop 3D visuals, user <br className="sm:block hidden" />
             interfaces and web applications. */}

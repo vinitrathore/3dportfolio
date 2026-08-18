@@ -1,6 +1,6 @@
 /* Experience.module.css */
 .sectionSubText {
-  color: #aaa6c3;
+  color: var(--text-muted);
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -8,10 +8,11 @@
 }
 
 .sectionHeadText {
-  color: white;
-  font-size: 32px;
-  font-weight: bold;
+  color: var(--text-heading);
+  font-size: 38px;
+  font-weight: 800;
   margin: 0;
+  letter-spacing: -0.02em;
 }
 
 .centerText {
@@ -19,23 +20,23 @@
 }
 
 .timelineContainer {
-  margin-top: 80px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
 }
 
 .cardTitle {
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
+  color: var(--text-heading);
+  font-size: 22px;
+  font-weight: 700;
   margin: 0;
 }
 
 .cardCompany {
-  color: #aaa6c3;
-  font-size: 16px;
+  color: var(--accent-purple);
+  font-size: 15px;
   font-weight: 600;
-  margin: 0;
+  margin: 4px 0 0 0;
 }
 
 .cardIcon {
@@ -47,20 +48,21 @@
 }
 
 .cardImage {
-  width: 60%;
-  height: 60%;
+  width: 65%;
+  height: 65%;
   object-fit: contain;
 }
 
 .cardPoints {
-  margin-top: 20px;
+  margin-top: 16px;
   list-style-type: disc;
   margin-left: 20px;
 }
 
 .cardPoint {
-  color: #f3f3f3;
+  color: var(--text-secondary);
   font-size: 14px;
   padding-left: 4px;
-  letter-spacing: 0.5px;
+  line-height: 24px;
+  margin-bottom: 8px;
 }

@@ -1,66 +1,80 @@
 .container {
   margin-top: 3rem;
-  background-color: #1a1a1a;
-  border-radius: 20px;
+  background-color: var(--bg-card);
+  border-radius: 24px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-card);
 }
 
 .header {
-  background-color: #2e2e2e;
-  border-radius: 16px;
-  padding: 2rem;
-  min-height: 300px;
+  background-color: var(--bg-secondary);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  padding: 3rem 2rem;
+  min-height: 280px;
 }
 
 .sectionSubText {
-  color: #aaa;
-  font-size: 17px;
+  color: var(--text-muted);
+  font-size: 14px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
 }
 
 .sectionHeadText {
-  color: white;
+  color: var(--text-heading);
   font-weight: 800;
-  font-size: 30px;
+  font-size: 36px;
+  letter-spacing: -0.02em;
 }
 
 .cardsContainer {
-  margin-top: -5rem;
-  padding-bottom: 3.5rem;
+  margin-top: -4.5rem;
+  padding-bottom: 3rem;
   padding-left: 2rem;
   padding-right: 2rem;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.75rem;
+  align-items: stretch;
 }
 
 .card {
-  background-color: #222;
-  padding: 2.5rem;
-  border-radius: 24px;
-  width: 100%;
-  max-width: 320px;
+  background-color: var(--bg-card);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .quote {
-  color: white;
+  color: var(--accent-purple);
   font-weight: 900;
-  font-size: 48px;
+  font-size: 44px;
+  line-height: 1;
 }
 
 .testimonial {
-  color: white;
-  font-size: 18px;
-  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  font-size: 15px;
+  line-height: 26px;
   margin-top: 0.5rem;
+  flex: 1 1 auto;
 }
 
 .userInfo {
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.25rem;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
 }
 
 .userDetails {
@@ -70,26 +84,25 @@
 }
 
 .name {
-  color: white;
-  font-weight: 500;
-  font-size: 16px;
+  color: var(--text-heading);
+  font-weight: 600;
+  font-size: 15px;
 }
 
 .highlight {
-  background: linear-gradient(to right, #6a11cb, #2575fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--accent-purple);
 }
 
 .role {
-  margin-top: 0.25rem;
-  color: #999;
+  margin-top: 0.2rem;
+  color: var(--text-muted);
   font-size: 12px;
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid var(--border-color);
 }

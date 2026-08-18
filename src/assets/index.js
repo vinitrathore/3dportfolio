@@ -25,10 +25,18 @@ import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
+import logocompanyids from "./logocompanyids.png";
+import devlogo from "./devlogo.png";
 
 import carrent from "./carrent.jpeg";
 import jobit from "./jobit.jpeg";
 import tripguide from "./pg.png";
+import hopecare from "./hopecare.jpg";
+import hospitalsystem from "./hospitalsystem.jpg";
+import infodeltasys_landing from "./infodeltasys_landing.jpg";
+import unnamed from "./unnamed.webp";
+import vinitids from "./vinitids.jpeg";
+import resumePDF from "./Vinit_Rathore_Resume.pdf";
 
 export {
   logo,
@@ -56,7 +64,15 @@ export {
   shopify,
   starbucks,
   tesla,
+  logocompanyids,
+  devlogo,
   carrent,
   jobit,
   tripguide,
+  hopecare,
+  hospitalsystem,
+  infodeltasys_landing,
+  unnamed,
+  vinitids,
+  resumePDF,
 };

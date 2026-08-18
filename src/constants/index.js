@@ -23,11 +23,20 @@ import {
   jobit,
   tripguide,
   threejs,
+  logocompanyids,
+  devlogo,
+  hopecare,
+  hospitalsystem,
+  infodeltasys_landing,
+  unnamed,
+  vinitids,
 } from "../assets";
+
 export const urls = {
   postUrl: `https://script.google.com/macros/s/AKfycbylJ-Ki7p61-1zZcCpKTQ8MUb9Vb5yw1SANGgEFTUKsCpuXDPQJW_KDaw5Ipw22KSU9/exec`,
   getUrl: `https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLg2kDkD3b3-ch0bzPtHoE4b30PLUH3fy__TUjNh1LPFrF9PMclrDdf8g4Swg1JqI6Qnj9jQNx0B-ZgwrQtwRSCWK6-W6yp-GfqdQCwLXIQepJAz39v1J9ZtQKrVfQUU9_6u2GAeEjx8zqh9QjNnyVSIRLj-vsqaEV7s-fX6Mdf3KdhVzg93JvzPfUzFdsozAgMoJg4kdSeLnaRpCNijcgmovQ71fZOsLG2X6XvOtbusHkBMaWHf8cDcd3ExATaTRHAtEIzcDaAsRhSxfN0YLBdA3djcIw&lib=MH46NatNxNwTQpBIwepAmnOdzRm4IKlxF`
-}
+};
+
 export const navLinks = [
   {
     id: "about",
@@ -38,33 +47,47 @@ export const navLinks = [
     title: "Work",
   },
   {
+    id: "projects",
+    title: "Projects",
+  },
+  {
     id: "contact",
     title: "Contact",
   },
 ];
 
 export const skills = [
-  { id: 1, name: "Software Engineer" },
-  { id: 2, name: "Application Developer" },
-  { id: 3, name: "Web Developer" },
-  //  {id:4,name:"MERN Stack Developer"},
-]
+  { id: 1, name: "Python & FastAPI Backend" },
+  { id: 2, name: "React Native & Android Developer" },
+  { id: 3, name: "React.js & Full Stack Web" },
+  { id: 4, name: "PostgreSQL & Supabase" },
+];
 
 const services = [
-
   {
-    title: "Web Developer",
-    icon: web,
-  },
-  {
-    title: "React Native Developer",
-    icon: mobile,
-  },
-  {
-    title: "Backend Developer",
+    title: "Python & FastAPI Backend",
+    subtitle: "High-Performance APIs & Microservices",
     icon: backend,
+    description: "FastAPI REST endpoints, async task pipelines, Python backend logic, and scalable microservice architectures.",
   },
-
+  {
+    title: "React Native & Android Developer",
+    subtitle: "Cross-Platform Mobile Apps",
+    icon: mobile,
+    description: "Production Android/iOS applications, Expo ecosystem, on-device OCR (Xtract), and 60fps native performance.",
+  },
+  {
+    title: "Full Stack Web Developer",
+    subtitle: "React.js, Node.js & Modern Web",
+    icon: web,
+    description: "Modern, responsive web applications, reusable component design, seamless UI/UX, and state management.",
+  },
+  {
+    title: "PostgreSQL & Supabase Architect",
+    subtitle: "Database & Cloud Infrastructure",
+    icon: creator,
+    description: "Relational database schema design, real-time Supabase subscriptions, migrations, and secure authentication.",
+  },
 ];
 
 const technologies = [
@@ -84,133 +107,154 @@ const technologies = [
     name: "git",
     icon: git,
   },
-
+  {
+    name: "TypeScript",
+    icon: typescript,
+  },
+  {
+    name: "Tailwind CSS",
+    icon: tailwind,
+  },
 ];
 
 const experiences = [
   {
-    title: "React.js Developer",
-    company_name: "Infodeltasys",
-    icon: tesla,
-    iconBg: "#383E56",
-    date: "january 2024 - march 2024",
+    title: "Full Stack & Mobile Engineer (Current)",
+    company_name: "Devlogix Technology Pvt Ltd",
+    icon: devlogo,
+    iconBg: "#ffffff",
+    date: "September 2024 - Present",
     points: [
-      "Designing and developing a responsive website for scrap product resale using React.js and Node.js.",
-      "Integrating real-time chat functionality for seamless buyer-seller interaction.",
-      "Implementing secure user authentication, product listing, and profile management.",
-      "Ensuring mobile-friendly UI/UX for a consistent experience across all devices.",
+      "Architecting enterprise web and cross-platform mobile solutions using Python, FastAPI, React Native, and PostgreSQL.",
+      "Engineered the full-featured Hospital Information System (HIS) with digital prescription workflows, automated appointment scheduling, and patient triage.",
+      "Developed the Xtract mobile application on Google Play for real-time on-device OCR text extraction.",
+      "Built scalable RESTful API microservices with FastAPI, automated database migrations, and high-performance caching.",
     ],
-
   },
   {
-    title: "React Native Developer",
-    company_name: "Infodeltasys",
-    icon: tesla,
-    iconBg: "#E6DEDD",
-    date: "march 2024 - september 2024",
+    title: "Web Developer & React Lead",
+    company_name: "Infodeltasys (infodeltasys.com)",
+    icon: logocompanyids,
+    iconBg: "#ffffff",
+    date: "January 2024 - September 2024",
     points: [
-      "Building and maintaining a resale platform for scrap products using the MERN stack and React Native.",
-      "Implementing real-time chat features to connect buyers and sellers for seamless communication.",
-      "Creating intuitive interfaces for users to list, browse, and manage scrap product listings.",
-      "Developing secure authentication and efficient product listing workflows for smooth transactions.",
-      "Ensuring responsive, mobile-friendly design for both web and Android platforms.",
-      "Integrating notifications and real-time updates to enhance user engagement.",
-      "Collaborating with designers and stakeholders to refine features and user experience.",
-      "Writing clean, scalable code and optimizing performance across devices.",
+      "Designed and developed the official corporate website and landing page for Infodeltasys (infodeltasys.com) with optimized SEO and modern UI.",
+      "Developed responsive e-commerce web applications including Orejewels and Shreddersbay with real-time OTP authentication and payment gateway integration.",
+      "Collaborated with cross-functional teams to build scalable frontend architectures and reusable component libraries.",
     ],
-
-  },
-  {
-    title: "Web Developer",
-    company_name: "Infodeltasys",
-    icon: meta,
-    iconBg: "#383E56",
-    date: "november 2024 - april 2025",
-    points: [
-      "Developed a luxury e-commerce website for selling diamond and gold jewelry.",
-      "Integrated secure phone OTP verification for user authentication.",
-      "Implemented payment gateway for seamless and secure transactions.",
-      "Built responsive product pages with filters, images, and dynamic pricing.",
-      "Created admin tools for managing inventory, orders, and customer data.",
-    ],
-
-  },
-  {
-    title: "Full stack Developer",
-    company_name: "PrepGinni",
-    icon: starbucks,
-    iconBg: "#E6DEDD",
-    date: "june 2023 - Present",
-    points: [
-      "Automatically generates personalized courses and quizzes based on user-submitted syllabus.",
-      "Covers a wide range of competitive exams with structured lessons and mock tests.",
-      "Interactive quizzes with instant feedback to track progress and improve performance.",
-      "Smart content planning ensures syllabus completion within available time.",
-      "Mobile-friendly platform for learning anytime, anywhere.",
-    ]
-
   },
 ];
-const testimonials = [
-  {
-    testimonial:
-      "The website delivered was not only visually stunning but also incredibly fast and responsive. It perfectly represents our brand!",
-    name: "Ananya Mehta",
-    designation: "Marketing Head",
-    company: "JewelCraft India",
-    image: "https://randomuser.me/api/portraits/women/50.jpg",
-  },
-  {
-    testimonial:
-      "We used to manually update sheets daily. Thanks to the automation setup, our workflow is now hands-free and error-free!",
-    name: "Rohan Verma",
-    designation: "Operations Manager",
-    company: "SmartSupply Co",
-    image: "https://randomuser.me/api/portraits/men/65.jpg",
-  },
-  {
-    testimonial:
-      "Their ability to integrate our website with Google Sheets for real-time order tracking saved us countless hours each week.",
-    name: "Raman Raj",
-    designation: "Founder",
-    company: "GreenRoot Organics",
-    image: "https://randomuser.me/api/portraits/men/39.jpg",
-  },
-];
-
-
-// const testimonials = [
-//   {
-//     testimonial:
-//       "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-//     name: "Sara Lee",
-//     designation: "CFO",
-//     company: "Acme Co",
-    // image: "https://randomuser.me/api/portraits/women/50.jpg",
-//   },
-//   {
-//     testimonial:
-//       "I've never met a web developer who truly cares about their clients' success like Rick does.",
-//     name: "Chris Brown",
-//     designation: "COO",
-//     company: "DEF Corp",
-    // image: "https://randomuser.me/api/portraits/men/65.jpg",
-//   },
-//   {
-//     testimonial:
-//       "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-//     name: "Lisa Wang",
-//     designation: "CTO",
-//     company: "456 Enterprises",
-    // image: "https://randomuser.me/api/portraits/men/39.jpg",
-//   },
-// ];
 
 const projects = [
   {
+    name: "Xtract – Screen Text & OCR Extractor",
+    description:
+      "Published Android application on Google Play that allows users to extract text in real-time from any phone screen, images, and live camera feed using powerful on-device OCR.",
+    tags: [
+      {
+        name: "react-native",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "android",
+        color: "green-text-gradient",
+      },
+      {
+        name: "ocr",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "play-store",
+        color: "green-text-gradient",
+      },
+    ],
+    image: unnamed,
+    source_code_link: "https://play.google.com/store/apps/details?id=com.vinitrathore.Xtract&hl=en_IN",
+    live_link: "https://play.google.com/store/apps/details?id=com.vinitrathore.Xtract&hl=en_IN",
+    badge_label: "Play Store App",
+  },
+  {
+    name: "HopeCare – Healthcare Management",
+    description:
+      "Full-stack healthcare platform for managing patient records, appointments, prescriptions, and doctor schedules with real-time charting and clinical coordination.",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "express",
+        color: "green-text-gradient",
+      },
+      {
+        name: "postgresql",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "supabase",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: hopecare,
+    source_code_link: "https://hopecare.swiftcharting.com/",
+    live_link: "https://hopecare.swiftcharting.com/",
+    badge_label: "Live Healthcare SaaS",
+  },
+  {
+    name: "Hospital Information System (HIS)",
+    description:
+      "Comprehensive clinical & hospital management platform (HIS/EMR) built with React Native and Expo. Features automated patient check-in, real-time triage queue, doctor consultation schedules, and intelligent prescription extraction (Extract) to digitize clinical workflows.",
+    tags: [
+      {
+        name: "react-native",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "expo",
+        color: "green-text-gradient",
+      },
+      {
+        name: "ehr-emr",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "extract-ocr",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: hospitalsystem,
+    source_code_link: "https://hishospital.thedevlogix.com/",
+    live_link: "https://hishospital.thedevlogix.com/",
+    badge_label: "Live Clinical System",
+  },
+  {
+    name: "Infodeltasys – Corporate Website",
+    description:
+      "Official landing page and corporate web presence for Infodeltasys (infodeltasys.com), highlighting custom software development, cloud solutions, and enterprise services.",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "ui-ux",
+        color: "green-text-gradient",
+      },
+      {
+        name: "seo",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: infodeltasys_landing,
+    source_code_link: "https://infodeltasys.com/",
+    live_link: "https://infodeltasys.com/",
+    badge_label: "Official Website",
+  },
+  {
     name: "Shreddersbay",
-    description: "A resale e-commerce platform where users can buy and sell pre-owned products, discover great deals, and connect directly with other users for smooth, secure transactions."
-    , tags: [
+    description:
+      "A resale e-commerce platform where users can buy and sell pre-owned products, discover great deals, and connect directly with other users for smooth, secure transactions.",
+    tags: [
       {
         name: "react",
         color: "blue-text-gradient",
@@ -221,9 +265,8 @@ const projects = [
       },
       {
         name: "restapi",
-        color: "green-text-gradient",
+        color: "pink-text-gradient",
       },
-
     ],
     image: carrent,
     source_code_link: "https://github.com/",
@@ -231,50 +274,45 @@ const projects = [
   {
     name: "Orejewels",
     description:
-      "E-commerce jewellery web application that allows users to explore and purchase a wide range of ornaments, view detailed product information, and enjoy a seamless online shopping experience.",
+      "Luxury e-commerce jewellery web application enabling users to browse fine diamond and gold ornaments with dynamic pricing, real-time OTP verification, and seamless checkout experience.",
     tags: [
       {
         name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "restapi",
+        name: "node-express",
         color: "green-text-gradient",
       },
-
+      {
+        name: "razorpay",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "otp-auth",
+        color: "blue-text-gradient",
+      },
     ],
     image: jobit,
-    source_code_link: "https://github.com/",
+    source_code_link: "https://orejewels.in/",
+    live_link: "https://orejewels.in/",
+    badge_label: "Live E-Commerce",
   },
   {
     name: "PrepGinni",
-
-    description: "A comprehensive exam preparation resource offering students access to well-structured practice questions, mock tests, and study materials tailored for various competitive exams.",
+    description:
+      "A comprehensive exam preparation resource offering students access to well-structured practice questions, mock tests, and study materials tailored for various competitive exams.",
     tags: [
       {
-        name: "rimix",
+        name: "remix",
         color: "blue-text-gradient",
       },
-
       {
         name: "node",
-        color: "pink-text-gradient",
+        color: "green-text-gradient",
       },
       {
-        name: "express",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "coudinary",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "mongoDb",
-        color: "pink-text-gradient",
-      },
-
-      {
-        name: "restapi",
+        name: "mongodb",
         color: "pink-text-gradient",
       },
     ],
@@ -283,6 +321,4 @@ const projects = [
   },
 ];
 
-
-
-export { services, technologies, experiences, testimonials, projects };
+export { services, technologies, experiences, projects, vinitids };

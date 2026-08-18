@@ -7,21 +7,31 @@ import { motion } from "framer-motion";
 
 import "react-vertical-timeline-component/style.min.css";
 
-import styles from "./Experience.module.css"; // CSS Module
+import styles from "./experience.module.css";
 import { experiences } from "../../constants";
 import { SectionWrapper } from "../../HOC";
 import { textVariant } from "../../utils/motion";
+import { useTheme } from "../../context/ThemeContext";
 
-const ExperienceCard = ({ experience }) => {
+const ExperienceCard = ({ experience, isDark }) => {
   return (
     <VerticalTimelineElement
       contentStyle={{
-        background: "#1d1836",
-        color: "#fff",
+        background: isDark ? "#151030" : "#ffffff",
+        color: isDark ? "#ffffff" : "#0f172a",
+        boxShadow: isDark
+          ? "0 10px 30px -10px rgba(0, 0, 0, 0.5)"
+          : "0 10px 30px -10px rgba(0, 0, 0, 0.08)",
+        borderRadius: "16px",
+        border: isDark
+          ? "1px solid rgba(255, 255, 255, 0.08)"
+          : "1px solid rgba(0, 0, 0, 0.06)",
       }}
-      contentArrowStyle={{ borderRight: "7px solid  #232631" }}
+      contentArrowStyle={{
+        borderRight: isDark ? "7px solid #151030" : "7px solid #ffffff",
+      }}
       date={experience.date}
-      iconStyle={{ background: experience.iconBg }}
+      iconStyle={{ background: experience.iconBg, boxShadow: "0 4px 12px rgba(0,0,0,0.15)" }}
       icon={
         <div className={styles.cardIcon}>
           <img
@@ -49,6 +59,9 @@ const ExperienceCard = ({ experience }) => {
 };
 
 const Experience = () => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   return (
     <>
       <motion.div variants={textVariant()}>
@@ -61,11 +74,12 @@ const Experience = () => {
       </motion.div>
 
       <div className={styles.timelineContainer}>
-        <VerticalTimeline>
+        <VerticalTimeline lineColor={isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}>
           {experiences.map((experience, index) => (
             <ExperienceCard
               key={`experience-${index}`}
               experience={experience}
+              isDark={isDark}
             />
           ))}
         </VerticalTimeline>

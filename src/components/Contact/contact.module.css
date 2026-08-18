@@ -5,6 +5,7 @@
   gap: 1.5rem;
   color: var(--text-primary);
   align-items: center;
+  justify-content: center;
   width: 100%;
 }
 
@@ -25,6 +26,7 @@
   border-radius: 1.5rem;
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-card);
+  box-sizing: border-box;
 }
 
 .sectionSubText {
@@ -71,6 +73,8 @@
   font-weight: 500;
   font-size: 14px;
   transition: border-color 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .input:focus {
@@ -88,6 +92,8 @@
   font-size: 14px;
   resize: none;
   transition: border-color 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .textarea:focus {
@@ -147,6 +153,7 @@
   text-decoration: none;
   color: var(--text-primary);
   transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .contactCard:hover {
@@ -218,13 +225,39 @@
 }
 
 @media (max-width: 768px) {
-  .sectionSubText,
-  .sectionHeadText {
-    text-align: center;
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
   }
 
   .formContainer {
-    padding: 1.5rem;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .sectionSubText,
+  .sectionHeadText {
+    text-align: center;
+    width: 100%;
+  }
+
+  .submitBtn {
+    width: 100%;
+    max-width: 260px;
+    margin: 0.5rem auto 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .directContactSection {
+    text-align: center;
+    width: 100%;
   }
 
   .directContactTitle {
@@ -233,9 +266,21 @@
 
   .contactGrid {
     grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .earthColumn {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
   }
 
   .earthContainer {
-    height: 360px;
+    width: 100%;
+    max-width: 440px;
+    height: 350px;
+    margin: 0 auto;
   }
 }

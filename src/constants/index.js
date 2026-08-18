@@ -303,10 +303,10 @@ const projects = [
     description:
       "A comprehensive exam preparation resource offering students access to well-structured practice questions, mock tests, and study materials tailored for various competitive exams.",
     tags: [
-      {
-        name: "remix",
-        color: "blue-text-gradient",
-      },
+    //   {
+    //     name: "remix",
+    //     color: "blue-text-gradient",
+    //   },
       {
         name: "node",
         color: "green-text-gradient",

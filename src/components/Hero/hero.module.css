@@ -1,29 +1,25 @@
-/* Hero.module.css */
-
 .heroSection {
   position: relative;
   width: 100%;
   height: 100vh;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .absoluteContainer {
   position: absolute;
-  inset: 0;
-  top: 90px;
+  top: 85px;
+  left: 0;
+  right: 0;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 2rem;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 1.5rem;
-  padding: 0 2rem;
   z-index: 10;
-  pointer-events: none; /* Allows 3D canvas drag rotation */
+  pointer-events: none; /* Let Three.js 3D canvas receive drag/hover events */
 }
 
 .lineContainer {
@@ -31,22 +27,28 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 0.75rem;
-  pointer-events: auto;
+  margin-top: 0.5rem;
+  flex-shrink: 0;
 }
 
 .circle {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 9999px;
   background-color: var(--accent-purple);
-  box-shadow: 0 0 12px var(--accent-purple);
+  box-shadow: 0 0 15px var(--accent-purple);
 }
 
 .violetGradient {
-  width: 3px;
-  height: 9rem;
+  width: 0.25rem;
+  height: 10rem;
   background: linear-gradient(to bottom, var(--accent-purple), transparent);
+}
+
+@media (min-width: 640px) {
+  .violetGradient {
+    height: 16rem;
+  }
 }
 
 .heroContent {
@@ -60,7 +62,7 @@
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .heroProfileWrapper {
@@ -72,6 +74,7 @@
   background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
   box-shadow: 0 0 20px rgba(145, 94, 255, 0.4);
   flex-shrink: 0;
+  align-self: center;
 }
 
 .heroProfileImg {
@@ -93,12 +96,23 @@
   border: 2px solid var(--bg-primary);
 }
 
+.heroTextColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 280px;
+}
+
 .heroHeadText {
   font-size: 2.8rem;
   font-weight: 800;
   color: var(--text-heading);
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -0.02em;
+  min-height: 3.5rem;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
 }
 
 .heroSubText {
@@ -120,8 +134,11 @@
   font-size: 13px;
   color: var(--text-secondary);
   width: fit-content;
+  min-height: 32px;
+  min-width: 180px;
   margin-top: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  white-space: nowrap;
 }
 
 .pillDot {
@@ -130,6 +147,42 @@
   border-radius: 50%;
   background-color: #10b981;
   box-shadow: 0 0 8px #10b981;
+  flex-shrink: 0;
+}
+
+/* Pencil writing effect animation styles */
+.pencilIcon {
+  width: 22px;
+  height: 22px;
+  margin-left: 6px;
+  vertical-align: middle;
+  transform: rotate(-25deg);
+  animation: pencilScratch 0.35s infinite alternate ease-in-out;
+  color: var(--accent-purple);
+  filter: drop-shadow(0 0 8px rgba(145, 94, 255, 0.7));
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.pencilIconSmall {
+  width: 14px;
+  height: 14px;
+  margin-left: 4px;
+  vertical-align: middle;
+  transform: rotate(-25deg);
+  animation: pencilScratch 0.35s infinite alternate ease-in-out;
+  color: var(--accent-purple);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+@keyframes pencilScratch {
+  0% {
+    transform: rotate(-20deg) translateY(0px);
+  }
+  100% {
+    transform: rotate(-35deg) translateY(-2px);
+  }
 }
 
 .heroBtnGroup {
@@ -165,7 +218,6 @@
 .contactBtn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
   padding: 10px 20px;
   border-radius: 12px;
   background-color: var(--bg-card);
@@ -199,17 +251,56 @@
   pointer-events: auto;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .absoluteContainer {
+    top: 75px;
+    padding: 0 1.25rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .lineContainer {
+    display: none;
+  }
+  .heroContent {
+    align-items: center;
+    text-align: center;
+  }
+  .heroHeaderRow {
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+  .heroTextColumn {
+    align-items: center;
+    text-align: center;
+  }
   .heroHeadText {
-    font-size: 2.2rem;
+    font-size: 2rem;
+    text-align: center;
+    justify-content: center;
+    min-height: 2.6rem;
   }
   .heroProfileWrapper {
     width: 60px;
     height: 60px;
   }
-  .absoluteContainer {
-    top: 75px;
-    padding: 0 1.25rem;
+  .heroStatusPill {
+    margin: 6px auto 0;
+    justify-content: center;
+  }
+  .heroSubText {
+    text-align: center;
+    margin: 0.25rem auto 0;
+  }
+  .heroBtnGroup {
+    gap: 8px;
+    margin-top: 0.5rem;
+    justify-content: center;
+  }
+  .resumeBtn, .contactBtn {
+    padding: 8px 16px;
+    font-size: 13px;
   }
 }
 

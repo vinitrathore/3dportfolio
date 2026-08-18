@@ -34,15 +34,15 @@
 .logoContainer {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
   color: var(--text-heading);
 }
 
 .avatarWrapper {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   padding: 2px;
   background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
@@ -63,8 +63,8 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background-color: #10b981;
   border: 2px solid var(--bg-primary);
@@ -89,7 +89,7 @@
 .navRight {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
 }
 
 .navLinks {
@@ -131,6 +131,7 @@
   text-decoration: none;
   box-shadow: 0 2px 8px rgba(145, 94, 255, 0.3);
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .navResumeBtn:hover {
@@ -166,6 +167,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .navbar {
+    padding: 10px 16px;
+  }
+
   .logoSpan {
     display: none;
   }
@@ -174,24 +179,42 @@
     display: none;
   }
 
+  .navRight {
+    gap: 10px;
+    align-items: center;
+  }
+
   .navResumeBtn {
-    display: none;
+    display: inline-flex;
+    padding: 6px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    gap: 6px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent-purple), #7c3aed);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(145, 94, 255, 0.35);
   }
 
   .mobileMenuToggle {
     display: flex;
+    padding: 7px 9px;
+    border-radius: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
   }
 
   .mobileMenu {
     display: flex;
+    flex-direction: column;
     position: absolute;
-    top: 65px;
-    right: 16px;
-    left: 16px;
+    top: 60px;
+    right: 14px;
+    left: 14px;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-card);
-    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    padding: 1.25rem;
     border-radius: 16px;
     z-index: 1000;
   }
@@ -200,18 +223,19 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     width: 100%;
   }
 
   .mobileLink a {
     color: var(--text-primary);
     text-decoration: none;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     transition: color 0.2s ease;
     display: block;
-    padding: 4px 0;
+    padding: 6px 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   .mobileLink.active a {
@@ -220,18 +244,20 @@
   }
 
   .mobileResumeBtn {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 10px;
+    padding: 12px 16px;
     border-radius: 10px;
     background: linear-gradient(135deg, var(--accent-purple), #7c3aed);
     color: #ffffff;
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
-    margin-top: 8px;
+    margin-top: 14px;
     text-align: center;
+    box-shadow: 0 4px 15px rgba(145, 94, 255, 0.35);
+    width: 100%;
   }
 }

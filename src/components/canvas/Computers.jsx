@@ -19,18 +19,18 @@ const Computers = ({ screenWidth }) => {
     });
   }, [scene]);
 
-  // Responsive scale, position, and rotation
+  // Responsive scale, position (lowered to sit near bottom scroll button), and rotation
   const getResponsiveProps = (width) => {
     if (width <= 360) {
-      return { scale: 0.35, position: [-3.7, -2, -1.5], baseRotation: [-0.02, -0.3, -0.1] };
-    } else if (width <= 400) {
-      return { scale: 0.45, position: [-3.3, -2, -1.5], baseRotation: [-0.015, -0.55, -0.1] };
-    } else if (width <= 601) {
-      return { scale: 0.55, position: [-3.3, -1, -1.5], baseRotation: [-0.015, -0.55, -0.1] };
+      return { scale: 0.38, position: [-2.0, -3.85, -1.5], baseRotation: [-0.02, -0.2, -0.1] };
+    } else if (width <= 500) {
+      return { scale: 0.48, position: [-2.0, -3.8, -1.5], baseRotation: [-0.015, -0.25, -0.1] };
     } else if (width <= 768) {
-      return { scale: 0.65, position: [-3.2, -2.8, -1.5], baseRotation: [-0.01, -0.2, -0.1] };
+      return { scale: 0.58, position: [-2.2, -3.75, -1.5], baseRotation: [-0.01, -0.2, -0.1] };
+    } else if (width <= 1024) {
+      return { scale: 0.68, position: [-2.6, -3.7, -1.5], baseRotation: [-0.005, -0.15, -0.1] };
     } else {
-      return { scale: 0.75, position: [-3.0, -2.6, -1.5], baseRotation: [-0.005, -0.15, -0.1] };
+      return { scale: 0.75, position: [-2.8, -3.7, -1.5], baseRotation: [-0.005, -0.15, -0.1] };
     }
   };
 

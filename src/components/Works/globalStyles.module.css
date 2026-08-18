@@ -13,6 +13,13 @@
   letter-spacing: -0.02em;
 }
 
+@media (max-width: 768px) {
+  .sectionSubText,
+  .sectionHeadText {
+    text-align: center;
+  }
+}
+
 @media (min-width: 480px) {
   .sectionHeadText {
     font-size: 38px;

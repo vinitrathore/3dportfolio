@@ -123,7 +123,7 @@ const experiences = [
     company_name: "Devlogix Technology Pvt Ltd",
     icon: devlogo,
     iconBg: "#ffffff",
-    date: "September 2024 - Present",
+    date: "October 2025 - Present",
     points: [
       "Architecting enterprise web and cross-platform mobile solutions using Python, FastAPI, React Native, and PostgreSQL.",
       "Engineered the full-featured Hospital Information System (HIS) with digital prescription workflows, automated appointment scheduling, and patient triage.",
@@ -136,7 +136,7 @@ const experiences = [
     company_name: "Infodeltasys (infodeltasys.com)",
     icon: logocompanyids,
     iconBg: "#ffffff",
-    date: "January 2024 - September 2024",
+    date: "October 2024 - September 2025",
     points: [
       "Designed and developed the official corporate website and landing page for Infodeltasys (infodeltasys.com) with optimized SEO and modern UI.",
       "Developed responsive e-commerce web applications including Orejewels and Shreddersbay with real-time OTP authentication and payment gateway integration.",
@@ -269,7 +269,7 @@ const projects = [
       },
     ],
     image: carrent,
-    source_code_link: "https://github.com/",
+    source_code_link: "https://github.com/vinitrathore/",
   },
   {
     name: "Orejewels",
@@ -317,8 +317,16 @@ const projects = [
       },
     ],
     image: tripguide,
-    source_code_link: "https://github.com/",
+    source_code_link: "https://github.com/vinitrathore/",
   },
 ];
+
+export const contactInfo = {
+  phone: "+919648201277",
+  displayPhone: "+91 9648201277",
+  email: "vinitrathore1277@gmail.com",
+  linkedin: "https://www.linkedin.com/in/vinitrathore1277/",
+  github: "https://github.com/vinitrathore/",
+};
 
 export { services, technologies, experiences, projects, vinitids };

@@ -1,3 +1,7 @@
+.headerWrapper {
+  width: 100%;
+}
+
 .card {
   background-color: var(--bg-card);
   padding: 18px;
@@ -193,18 +197,80 @@
   display: flex;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .headerWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .overviewTextContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+  }
+
+  .overviewText {
+    text-align: center;
+    margin: 0.75rem auto 0;
+    font-size: 15px;
+    line-height: 25px;
+  }
+
   .projectsContainer {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.75rem;
+    max-width: 380px;
+    margin: 2.25rem auto 0;
+    width: 100%;
+    justify-items: center;
   }
+
+  .cardMotionWrapper {
+    width: 100%;
+    justify-content: center;
+  }
+
   .card {
-    padding: 14px;
+    padding: 16px;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
   }
+
   .cardImageContainer {
     height: 190px;
+    margin: 0 auto;
   }
+
+  .projectContent {
+    text-align: center;
+    align-items: center;
+  }
+
   .projectTitle {
     min-height: auto;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .projectDescription {
+    text-align: center;
+  }
+
+  .projectTags {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .cardActions {
+    justify-content: center;
+    width: 100%;
   }
 }

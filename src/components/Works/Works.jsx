@@ -156,7 +156,7 @@ const ProjectCard = ({
 const Works = () => {
   return (
     <>
-      <motion.div variants={textVariant()}>
+      <motion.div variants={textVariant()} className={styles.headerWrapper}>
         <p className={globalStyles.sectionSubText}>My work</p>
         <h2 className={globalStyles.sectionHeadText}>Projects.</h2>
       </motion.div>

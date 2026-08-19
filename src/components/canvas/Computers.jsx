@@ -64,7 +64,17 @@ const ComputersCanvas = () => {
         powerPreference: "high-performance",
       }}
       onCreated={({ gl }) => {
-        gl.setClearColor(0x000000, 0); // 100% transparent clear color so background is never white!
+        gl.setClearColor(0x000000, 0); // 100% transparent clear color
+        const canvas = gl.domElement;
+        if (canvas) {
+          canvas.addEventListener(
+            "webglcontextlost",
+            (event) => {
+              event.preventDefault();
+            },
+            false
+          );
+        }
       }}
       style={{
         cursor: "grab",

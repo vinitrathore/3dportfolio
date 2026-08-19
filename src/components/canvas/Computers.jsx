@@ -3,82 +3,75 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "./Loader";
 
-const Computers = ({ isMobile, screenWidth }) => {
-  const { scene } = useGLTF("/desktop_pc/scene.gltf");
-
-  // Responsive scale and position centered in viewport
-  const getResponsiveProps = (width) => {
-    if (width <= 360) {
-      return { scale: 0.38, position: [0, -3.2, -2.2], rotation: [-0.01, -0.2, -0.1] };
-    } else if (width <= 500) {
-      return { scale: 0.44, position: [0, -3.2, -2.0], rotation: [-0.01, -0.2, -0.1] };
-    } else if (width <= 768) {
-      return { scale: 0.55, position: [0, -3.2, -1.8], rotation: [-0.01, -0.2, -0.1] };
-    } else if (width <= 1024) {
-      return { scale: 0.68, position: [0, -3.25, -1.5], rotation: [-0.01, -0.2, -0.1] };
-    } else {
-      return { scale: 0.75, position: [0, -3.25, -1.5], rotation: [-0.01, -0.2, -0.1] };
-    }
-  };
-
-  const { scale, position, rotation } = getResponsiveProps(screenWidth);
+const Computers = ({ isMobile }) => {
+  const computer = useGLTF("./desktop_pc/scene.gltf");
 
   return (
     <mesh>
-      <hemisphereLight intensity={0.65} groundColor="black" />
+      <hemisphereLight intensity={0.5} groundColor="#000000" color="#915eff" />
       <spotLight
         position={[-20, 50, 10]}
         angle={0.15}
         penumbra={1}
-        intensity={1.5}
+        intensity={1.2}
         castShadow={!isMobile}
         shadow-mapSize={isMobile ? 512 : 1024}
       />
-      <ambientLight intensity={Math.PI / 1.5} />
-      <pointLight intensity={5} />
+      <ambientLight intensity={1.5} />
+      <pointLight intensity={2.5} />
       <primitive
-        object={scene}
-        scale={scale}
-        position={position}
-        rotation={rotation}
+        object={computer.scene}
+        scale={isMobile ? 0.44 : 0.75}
+        position={isMobile ? [0, -3.1, -2.2] : [0, -3.25, -1.5]}
+        rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
   );
 };
 
 const ComputersCanvas = () => {
-  const [screenWidth, setScreenWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 1200
-  );
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      setScreenWidth(width);
-      setIsMobile(width <= 768);
+    // Add a listener for changes to the screen size
+    const mediaQuery = window.matchMedia("(max-width: 600px)");
+
+    // Set the initial value of the isMobile state variable
+    setIsMobile(mediaQuery.matches);
+
+    // Define a callback function to handle changes to the media query
+    const handleMediaQueryChange = (event) => {
+      setIsMobile(event.matches);
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
   }, []);
 
   return (
     <Canvas
-      frameloop="always"
+      frameloop="demand"
       shadows={!isMobile}
       dpr={isMobile ? [1, 1.5] : [1, 2]}
       camera={{ position: [20, 3, 5], fov: 25 }}
       gl={{
         preserveDrawingBuffer: true,
         antialias: true,
+        alpha: true,
         powerPreference: "high-performance",
+      }}
+      onCreated={({ gl }) => {
+        gl.setClearColor(0x000000, 0); // 100% transparent clear color so background is never white!
       }}
       style={{
         cursor: "grab",
         width: "100%",
         height: "100%",
+        touchAction: "pan-y",
+        background: "transparent",
       }}
     >
       <Suspense fallback={<CanvasLoader />}>
@@ -87,9 +80,8 @@ const ComputersCanvas = () => {
           enablePan={false}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
-          rotateSpeed={0.8}
         />
-        <Computers isMobile={isMobile} screenWidth={screenWidth} />
+        <Computers isMobile={isMobile} />
       </Suspense>
 
       <Preload all />
@@ -97,6 +89,6 @@ const ComputersCanvas = () => {
   );
 };
 
-useGLTF.preload("/desktop_pc/scene.gltf");
+useGLTF.preload("./desktop_pc/scene.gltf");
 
 export default ComputersCanvas;

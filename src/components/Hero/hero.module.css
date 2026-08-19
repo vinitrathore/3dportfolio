@@ -2,13 +2,25 @@
   position: relative;
   width: 100%;
   height: 100vh;
+  min-height: 720px;
   margin: 0 auto;
   overflow: hidden;
 }
 
+/* Layer for 3D Canvas in background/lower space */
+.canvasContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Foreground content container */
 .absoluteContainer {
   position: absolute;
-  top: 85px;
+  top: 90px;
   left: 0;
   right: 0;
   max-width: 1200px;
@@ -19,7 +31,7 @@
   align-items: flex-start;
   gap: 1.5rem;
   z-index: 10;
-  pointer-events: none; /* Let Three.js 3D canvas receive drag/hover events */
+  pointer-events: none;
 }
 
 .lineContainer {
@@ -36,12 +48,12 @@
   height: 1.25rem;
   border-radius: 9999px;
   background-color: var(--accent-purple);
-  box-shadow: 0 0 15px var(--accent-purple);
+  box-shadow: 0 0 20px var(--accent-purple);
 }
 
 .violetGradient {
   width: 0.25rem;
-  height: 10rem;
+  height: 12rem;
   background: linear-gradient(to bottom, var(--accent-purple), transparent);
 }
 
@@ -55,7 +67,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  pointer-events: auto; /* Buttons & links clickable */
+  pointer-events: auto;
+  max-width: 800px;
 }
 
 .heroHeaderRow {
@@ -67,15 +80,16 @@
 
 .heroProfileWrapper {
   position: relative;
-  width: 175px;
-  height: 175px;
+  width: 84px;
+  height: 84px;
   border-radius: 50%;
-  padding: 4.5px;
+  padding: 3px;
   background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
-  box-shadow: 0 0 45px rgba(145, 94, 255, 0.6);
+  box-shadow: 0 0 25px rgba(145, 94, 255, 0.5);
   flex-shrink: 0;
-  align-self: center;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .heroProfileImg {
@@ -84,66 +98,59 @@
   border-radius: 50%;
   object-fit: cover;
   object-position: 50% 10%;
-  transform: scale(1.22);
-  border: 3.5px solid var(--bg-primary);
+  transform: scale(1.15);
+  border: 2.5px solid var(--bg-primary);
+  display: block;
 }
 
 .onlineBadge {
   position: absolute;
-  bottom: 8px;
-  right: 8px;
-  width: 26px;
-  height: 26px;
+  bottom: 2px;
+  right: 2px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background-color: #10b981;
-  border: 3.5px solid var(--bg-primary);
+  border: 2.5px solid var(--bg-primary);
   z-index: 2;
-  box-shadow: 0 0 14px #10b981;
+  box-shadow: 0 0 10px #10b981;
 }
 
 .heroTextColumn {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: 280px;
 }
 
 .heroHeadText {
-  font-size: 2.8rem;
+  font-size: 2.6rem;
   font-weight: 800;
   color: var(--text-heading);
   line-height: 1.2;
   letter-spacing: -0.02em;
-  min-height: 3.5rem;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
+  margin: 0;
 }
 
-.heroSubText {
-  font-size: 1.15rem;
-  color: var(--text-secondary);
-  margin-top: 0.25rem;
-  max-width: 620px;
-  line-height: 1.6;
+.nameHighlight {
+  background: linear-gradient(135deg, #915eff, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .heroStatusPill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 14px;
+  padding: 5px 14px;
   border-radius: 9999px;
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--text-secondary);
   width: fit-content;
-  min-height: 32px;
-  min-width: 180px;
-  margin-top: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  white-space: nowrap;
+  min-height: 30px;
+  margin-top: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .pillDot {
@@ -153,41 +160,42 @@
   background-color: #10b981;
   box-shadow: 0 0 8px #10b981;
   flex-shrink: 0;
+  animation: pulseDot 2s infinite ease-in-out;
 }
 
-/* Pencil writing effect animation styles */
-.pencilIcon {
-  width: 22px;
-  height: 22px;
-  margin-left: 6px;
-  vertical-align: middle;
-  transform: rotate(-25deg);
-  animation: pencilScratch 0.35s infinite alternate ease-in-out;
-  color: var(--accent-purple);
-  filter: drop-shadow(0 0 8px rgba(145, 94, 255, 0.7));
-  display: inline-block;
-  flex-shrink: 0;
-}
-
-.pencilIconSmall {
-  width: 14px;
-  height: 14px;
-  margin-left: 4px;
-  vertical-align: middle;
-  transform: rotate(-25deg);
-  animation: pencilScratch 0.35s infinite alternate ease-in-out;
-  color: var(--accent-purple);
-  display: inline-block;
-  flex-shrink: 0;
-}
-
-@keyframes pencilScratch {
-  0% {
-    transform: rotate(-20deg) translateY(0px);
+@keyframes pulseDot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
   }
-  100% {
-    transform: rotate(-35deg) translateY(-2px);
+  50% {
+    opacity: 0.6;
+    transform: scale(0.85);
   }
+}
+
+.pillText {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.cursor {
+  font-weight: 700;
+  color: var(--accent-purple);
+  animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.heroSubText {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  max-width: 600px;
+  line-height: 1.6;
 }
 
 .heroBtnGroup {
@@ -202,7 +210,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 20px;
+  padding: 10px 22px;
   border-radius: 12px;
   background: linear-gradient(135deg, var(--accent-purple), #7c3aed);
   color: #ffffff;
@@ -217,13 +225,14 @@
 
 .resumeBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(145, 94, 255, 0.5);
+  box-shadow: 0 6px 22px rgba(145, 94, 255, 0.55);
 }
 
 .contactBtn {
   display: inline-flex;
   align-items: center;
-  padding: 10px 20px;
+  gap: 6px;
+  padding: 10px 22px;
   border-radius: 12px;
   background-color: var(--bg-card);
   color: var(--text-primary);
@@ -233,11 +242,13 @@
   border: 1px solid var(--border-color);
   cursor: pointer;
   transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
 }
 
 .contactBtn:hover {
   border-color: var(--accent-purple);
   background-color: var(--bg-card-alt);
+  transform: translateY(-2px);
 }
 
 .scrollContainer {
@@ -256,74 +267,87 @@
   pointer-events: auto;
 }
 
-@media (max-width: 768px) {
-  .absoluteContainer {
-    top: 75px;
-    padding: 0 1.25rem;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  .lineContainer {
-    display: none;
-  }
-  .heroContent {
-    align-items: center;
-    text-align: center;
-  }
-  .heroHeaderRow {
-    justify-content: center;
-    text-align: center;
-    flex-wrap: wrap;
-  }
-  .heroTextColumn {
-    align-items: center;
-    text-align: center;
-  }
-  .heroHeadText {
-    font-size: 2rem;
-    text-align: center;
-    justify-content: center;
-    min-height: 2.6rem;
-  }
-  .heroProfileWrapper {
-    width: 140px;
-    height: 140px;
-  }
-  .heroStatusPill {
-    margin: 6px auto 0;
-    justify-content: center;
-  }
-  .heroSubText {
-    text-align: center;
-    margin: 0.25rem auto 0;
-  }
-  .heroBtnGroup {
-    gap: 8px;
-    margin-top: 0.5rem;
-    justify-content: center;
-  }
-  .resumeBtn, .contactBtn {
-    padding: 8px 16px;
-    font-size: 13px;
-  }
-}
-
 .scrollBox {
-  width: 32px;
-  height: 48px;
+  width: 30px;
+  height: 50px;
   border-radius: 20px;
   border: 3px solid var(--accent-purple);
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 0.35rem;
+  box-shadow: 0 0 12px rgba(145, 94, 255, 0.4);
 }
 
 .scrollDot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background-color: var(--accent-purple);
-  margin-bottom: 0.25rem;
+  box-shadow: 0 0 8px var(--accent-purple);
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    min-height: 650px;
+  }
+
+  .absoluteContainer {
+    top: 75px;
+    padding: 0 1.25rem;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .lineContainer {
+    display: none;
+  }
+
+  .heroContent {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .heroHeaderRow {
+    gap: 12px;
+  }
+
+  .heroProfileWrapper {
+    width: 68px;
+    height: 68px;
+  }
+
+  .heroHeadText {
+    font-size: 1.85rem;
+  }
+
+  .heroStatusPill {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+
+  .heroSubText {
+    font-size: 0.98rem;
+  }
+
+  .heroBtnGroup {
+    gap: 8px;
+  }
+
+  .resumeBtn, .contactBtn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroHeaderRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .heroHeadText {
+    font-size: 1.6rem;
+  }
 }

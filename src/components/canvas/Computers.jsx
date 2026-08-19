@@ -1,11 +1,10 @@
-import React, { Suspense, useEffect, useState, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import React, { Suspense, useEffect, useState } from "react";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "./Loader";
 
 const Computers = ({ screenWidth }) => {
   const { scene } = useGLTF("/desktop_pc/scene.gltf");
-  const groupRef = useRef();
 
   useEffect(() => {
     scene.traverse((child) => {
@@ -19,32 +18,20 @@ const Computers = ({ screenWidth }) => {
     });
   }, [scene]);
 
-  // Responsive scale, position (lowered to sit near bottom scroll button), and rotation
+  // Responsive scale and position centered in viewport
   const getResponsiveProps = (width) => {
-    if (width <= 360) {
-      return { scale: 0.38, position: [-2.0, -3.85, -1.5], baseRotation: [-0.02, -0.2, -0.1] };
-    } else if (width <= 500) {
-      return { scale: 0.48, position: [-2.0, -3.8, -1.5], baseRotation: [-0.015, -0.25, -0.1] };
+    if (width <= 500) {
+      return { scale: 0.48, position: [0, -3.0, -2.2], rotation: [-0.01, -0.2, -0.1] };
     } else if (width <= 768) {
-      return { scale: 0.58, position: [-2.2, -3.75, -1.5], baseRotation: [-0.01, -0.2, -0.1] };
+      return { scale: 0.58, position: [0, -3.1, -1.8], rotation: [-0.01, -0.2, -0.1] };
     } else if (width <= 1024) {
-      return { scale: 0.68, position: [-2.6, -3.7, -1.5], baseRotation: [-0.005, -0.15, -0.1] };
+      return { scale: 0.68, position: [0, -3.25, -1.5], rotation: [-0.01, -0.2, -0.1] };
     } else {
-      return { scale: 0.75, position: [-2.8, -3.7, -1.5], baseRotation: [-0.005, -0.15, -0.1] };
+      return { scale: 0.75, position: [0, -3.25, -1.5], rotation: [-0.01, -0.2, -0.1] };
     }
   };
 
-  const { scale, position, baseRotation } = getResponsiveProps(screenWidth);
-
-  // Smoothly move 3D model ONLY along horizontal X-axis (rotating around Y-axis)
-  useFrame((state) => {
-    if (groupRef.current) {
-      const targetY = baseRotation[1] + state.pointer.x * 0.45;
-      groupRef.current.rotation.y += (targetY - groupRef.current.rotation.y) * 0.08;
-      groupRef.current.rotation.x = baseRotation[0];
-      groupRef.current.rotation.z = baseRotation[2];
-    }
-  });
+  const { scale, position, rotation } = getResponsiveProps(screenWidth);
 
   return (
     <mesh>
@@ -59,15 +46,20 @@ const Computers = ({ screenWidth }) => {
       />
       <ambientLight intensity={Math.PI / 1.5} />
       <pointLight intensity={5} />
-      <group ref={groupRef} position={position} rotation={baseRotation}>
-        <primitive object={scene} scale={scale} />
-      </group>
+      <primitive
+        object={scene}
+        scale={scale}
+        position={position}
+        rotation={rotation}
+      />
     </mesh>
   );
 };
 
 const ComputersCanvas = () => {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 1200
+  );
 
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
@@ -77,7 +69,7 @@ const ComputersCanvas = () => {
 
   return (
     <Canvas
-      frameloop="always"
+      frameloop="demand"
       shadows
       dpr={[1, 2]}
       camera={{ position: [20, 3, 5], fov: 25 }}
@@ -98,5 +90,7 @@ const ComputersCanvas = () => {
     </Canvas>
   );
 };
+
+useGLTF.preload("/desktop_pc/scene.gltf");
 
 export default ComputersCanvas;

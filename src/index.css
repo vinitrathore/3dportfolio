@@ -135,3 +135,75 @@ body {
   -webkit-text-fill-color: transparent;
   font-weight: 500;
 }
+
+/* Canvas 3D Loader Spinner */
+.canvas-loader {
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  animation: mulShdSpin 1.1s infinite ease;
+  transform: translateZ(0);
+}
+
+@keyframes mulShdSpin {
+  0%,
+  100% {
+    box-shadow: 0 -3em 0px 0.2em #915eff,
+      2em -2em 0 0px #915eff, 3em 0 0 -0.5em #915eff,
+      2em 2em 0 -0.5em #915eff, 0 3em 0 -0.5em #915eff,
+      -2em 2em 0 -0.5em #915eff, -3em 0 0 -0.5em #915eff,
+      -2em -2em 0 0px #915eff;
+  }
+  12.5% {
+    box-shadow: 0 -3em 0px 0 #915eff,
+      2em -2em 0 0.2em #915eff, 3em 0 0 0 #915eff,
+      2em 2em 0 -0.5em #915eff, 0 3em 0 -0.5em #915eff,
+      -2em 2em 0 -0.5em #915eff, -3em 0 0 -0.5em #915eff,
+      -2em -2em 0 -0.5em #915eff;
+  }
+  25% {
+    box-shadow: 0 -3em 0px -0.5em #915eff,
+      2em -2em 0 0 #915eff, 3em 0 0 0.2em #915eff,
+      2em 2em 0 0 #915eff, 0 3em 0 -0.5em #915eff,
+      -2em 2em 0 -0.5em #915eff, -3em 0 0 -0.5em #915eff,
+      -2em -2em 0 -0.5em #915eff;
+  }
+  37.5% {
+    box-shadow: 0 -3em 0px -0.5em #915eff,
+      2em -2em 0 -0.5em #915eff, 3em 0 0 0 #915eff,
+      2em 2em 0 0.2em #915eff, 0 3em 0 0px #915eff,
+      -2em 2em 0 -0.5em #915eff, -3em 0 0 -0.5em #915eff,
+      -2em -2em 0 -0.5em #915eff;
+  }
+  50% {
+    box-shadow: 0 -3em 0px -0.5em #915eff,
+      2em -2em 0 -0.5em #915eff, 3em 0 0 -0.5em #915eff,
+      2em 2em 0 0px #915eff, 0 3em 0 0.2em #915eff,
+      -2em 2em 0 0 #915eff, -3em 0 0 -0.5em #915eff,
+      -2em -2em 0 -0.5em #915eff;
+  }
+  62.5% {
+    box-shadow: 0 -3em 0px -0.5em #915eff,
+      2em -2em 0 -0.5em #915eff, 3em 0 0 -0.5em #915eff,
+      2em 2em 0 -0.5em #915eff, 0 3em 0 0 #915eff,
+      -2em 2em 0 0.2em #915eff, -3em 0 0 0 #915eff,
+      -2em -2em 0 -0.5em #915eff;
+  }
+  75% {
+    box-shadow: 0 -3em 0px -0.5em #915eff,
+      2em -2em 0 -0.5em #915eff, 3em 0 0 -0.5em #915eff,
+      2em 2em 0 -0.5em #915eff, 0 3em 0 -0.5em #915eff,
+      -2em 2em 0 0 #915eff, -3em 0 0 0.2em #915eff,
+      -2em -2em 0 0 #915eff;
+  }
+  87.5% {
+    box-shadow: 0 -3em 0px 0 #915eff,
+      2em -2em 0 -0.5em #915eff, 3em 0 0 -0.5em #915eff,
+      2em 2em 0 -0.5em #915eff, 0 3em 0 -0.5em #915eff,
+      -2em 2em 0 0 #915eff, -3em 0 0 0 #915eff,
+      -2em -2em 0 0.2em #915eff;
+  }
+}

@@ -148,7 +148,16 @@ const Contact = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const handleFileChange = (e) => {
+  const readFileAsBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
       // 10MB size limit
@@ -157,11 +166,12 @@ const Contact = () => {
         return;
       }
       setAttachedFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFileBase64(reader.result);
-      };
-      reader.readAsDataURL(file);
+      try {
+        const base64 = await readFileAsBase64(file);
+        setFileBase64(base64);
+      } catch (err) {
+        console.error("Error reading file:", err);
+      }
     }
   };
 
@@ -179,6 +189,11 @@ const Contact = () => {
 
     if (form.name && form.email && form.phone && form.message) {
       try {
+        let base64Payload = fileBase64;
+        if (attachedFile && !base64Payload) {
+          base64Payload = await readFileAsBase64(attachedFile);
+        }
+
         const formData = new FormData();
         formData.append("name", form.name);
         formData.append("email", form.email);
@@ -191,10 +206,10 @@ const Contact = () => {
         formData.append("message", form.message);
 
         // Append file data if attached
-        if (attachedFile && fileBase64) {
+        if (attachedFile && base64Payload) {
           formData.append("fileName", attachedFile.name);
-          formData.append("fileType", attachedFile.type);
-          formData.append("fileData", fileBase64);
+          formData.append("fileType", attachedFile.type || "application/octet-stream");
+          formData.append("fileData", base64Payload);
         }
 
         // Send to backend endpoint (Google Apps Script / Webhook)

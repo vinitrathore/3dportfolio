@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { ErrorBoundary } from "react-error-boundary";
 import styles from "./hero.module.css";
 import { ComputersCanvas } from "../../components/canvas";
 import { vinitids, resumePDF } from "../../assets";
@@ -143,7 +144,9 @@ const Hero = () => {
 
       {/* 3D Computer Canvas */}
       <div className={styles.canvasContainer}>
-        <ComputersCanvas />
+        <ErrorBoundary fallback={null}>
+          <ComputersCanvas />
+        </ErrorBoundary>
       </div>
 
       {/* Scroll Down Indicator */}

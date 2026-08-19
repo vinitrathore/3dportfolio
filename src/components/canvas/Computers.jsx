@@ -6,18 +6,6 @@ import CanvasLoader from "./Loader";
 const Computers = ({ isMobile, screenWidth }) => {
   const { scene } = useGLTF("/desktop_pc/scene.gltf");
 
-  useEffect(() => {
-    scene.traverse((child) => {
-      if (child.isMesh && child.geometry?.attributes?.position) {
-        const positionArray = child.geometry.attributes.position.array;
-        if (Array.from(positionArray).some((val) => isNaN(val))) {
-          console.warn(`Invalid geometry in mesh: ${child.name}`);
-          child.visible = false;
-        }
-      }
-    });
-  }, [scene]);
-
   // Responsive scale and position centered in viewport
   const getResponsiveProps = (width) => {
     if (width <= 360) {
@@ -43,8 +31,8 @@ const Computers = ({ isMobile, screenWidth }) => {
         angle={0.15}
         penumbra={1}
         intensity={1.5}
-        castShadow
-        shadow-mapSize={1024}
+        castShadow={!isMobile}
+        shadow-mapSize={isMobile ? 512 : 1024}
       />
       <ambientLight intensity={Math.PI / 1.5} />
       <pointLight intensity={5} />

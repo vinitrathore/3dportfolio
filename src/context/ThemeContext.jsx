@@ -3,19 +3,17 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem("portfolio-theme");
-    return savedTheme ? savedTheme : "dark";
-  });
+  const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    document.body.className = `${theme}-theme`;
-    localStorage.setItem("portfolio-theme", theme);
+    document.documentElement.setAttribute("data-theme", "dark");
+    document.body.className = "dark-theme";
+    localStorage.setItem("portfolio-theme", "dark");
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+    // Keep dark theme as default
+    setTheme("dark");
   };
 
   return (

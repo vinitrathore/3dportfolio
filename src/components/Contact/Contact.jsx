@@ -61,16 +61,80 @@ const GitHubIcon = () => (
   </svg>
 );
 
+const CalendarIcon = () => (
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+    <line x1="16" y1="2" x2="16" y2="6"></line>
+    <line x1="8" y1="2" x2="8" y2="6"></line>
+    <line x1="3" y1="10" x2="21" y2="10"></line>
+  </svg>
+);
+
+const UploadIcon = () => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+    <polyline points="17 8 12 3 7 8"></polyline>
+    <line x1="12" y1="3" x2="12" y2="15"></line>
+  </svg>
+);
+
+const FileCheckIcon = () => (
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#10b981"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+    <polyline points="14 2 14 8 20 8"></polyline>
+    <polyline points="9 15 11 17 15 13"></polyline>
+  </svg>
+);
+
 const Contact = () => {
   const formRef = useRef();
+  const fileInputRef = useRef(null);
+
   const [form, setForm] = useState({
     name: "",
     email: "",
-    message: "",
     phone: "",
+    company: "",
+    projectType: "Full Stack Web App",
+    budget: "$1,000 - $3,000",
+    meetingDate: "",
+    meetingTime: "02:00 PM - 04:00 PM",
+    message: "",
   });
 
+  const [attachedFile, setAttachedFile] = useState(null);
+  const [fileBase64, setFileBase64] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Minimum date allowed is today
+  const todayDate = new Date().toISOString().split("T")[0];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -84,19 +148,56 @@ const Contact = () => {
     setForm({ ...form, [name]: value });
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // 10MB size limit
+      if (file.size > 10 * 1024 * 1024) {
+        alert("File size exceeds 10MB limit. Please upload a smaller document.");
+        return;
+      }
+      setAttachedFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFileBase64(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeFile = () => {
+    setAttachedFile(null);
+    setFileBase64("");
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    if (form.name && form.email && form.message && form.phone) {
+    if (form.name && form.email && form.phone && form.message) {
       try {
         const formData = new FormData();
         formData.append("name", form.name);
         formData.append("email", form.email);
         formData.append("phone", form.phone);
+        formData.append("company", form.company || "Individual / Not specified");
+        formData.append("projectType", form.projectType);
+        formData.append("budget", form.budget);
+        formData.append("meetingDate", form.meetingDate || "Flexible / Not selected");
+        formData.append("meetingTime", form.meetingTime || "Flexible");
         formData.append("message", form.message);
 
-        // Use no-cors mode so Google Apps Script 302 redirect doesn't get blocked by browser CORS
+        // Append file data if attached
+        if (attachedFile && fileBase64) {
+          formData.append("fileName", attachedFile.name);
+          formData.append("fileType", attachedFile.type);
+          formData.append("fileData", fileBase64);
+        }
+
+        // Send to backend endpoint (Google Apps Script / Webhook)
         await fetch(urls.postUrl, {
           method: "POST",
           mode: "no-cors",
@@ -106,11 +207,17 @@ const Contact = () => {
         setForm({
           name: "",
           email: "",
-          message: "",
           phone: "",
+          company: "",
+          projectType: "Full Stack Web App",
+          budget: "$1,000 - $3,000",
+          meetingDate: "",
+          meetingTime: "02:00 PM - 04:00 PM",
+          message: "",
         });
+        removeFile();
 
-        alert("Thank you! Your message has been sent successfully.");
+        alert("🎉 Thank you! Your project details, scheduled meeting request, and documents have been sent. I will review and connect with you shortly!");
       } catch (error) {
         console.error("Error submitting contact form:", error);
         alert("Oops! Something went wrong. Please reach out directly via email or phone.");
@@ -118,7 +225,7 @@ const Contact = () => {
         setLoading(false);
       }
     } else {
-      alert("Please fill in all required fields.");
+      alert("Please fill in all required fields (Name, Email, Phone, and Message).");
       setLoading(false);
     }
   };
@@ -129,71 +236,215 @@ const Contact = () => {
         variants={fadeIn("up", "spring", 0.1, 0.75)}
         className={styles.formContainer}
       >
-        <p className={styles.sectionSubText}>Get in touch</p>
-        <h3 className={styles.sectionHeadText}>Contact.</h3>
+        <p className={styles.sectionSubText}>Let's build something great</p>
+        <h3 className={styles.sectionHeadText}>Hire Me / Project Inquiry.</h3>
+        <p className={styles.formDescription}>
+          Have a project in mind or need dedicated engineering support? Submit your project requirements, attach specifications, or schedule a discovery call.
+        </p>
 
         <form
           ref={formRef}
           onSubmit={handleSubmit}
           className={styles.form}
         >
-          <label className={styles.label}>
-            <span className={styles.labelText}>Your Name</span>
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="What's your good name?"
-              className={styles.input}
-              required
-            />
-          </label>
+          {/* Row 1: Name & Company */}
+          <div className={styles.formGrid}>
+            <label className={styles.label}>
+              <span className={styles.labelText}>Your Name *</span>
+              <input
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="e.g. John Doe"
+                className={styles.input}
+                required
+              />
+            </label>
 
-          <label className={styles.label}>
-            <span className={styles.labelText}>Your Email</span>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder="What's your email address?"
-              className={styles.input}
-              required
-            />
-          </label>
+            <label className={styles.label}>
+              <span className={styles.labelText}>Company / Organization</span>
+              <input
+                type="text"
+                name="company"
+                value={form.company}
+                onChange={handleChange}
+                placeholder="e.g. TechCorp, Startup Ltd"
+                className={styles.input}
+              />
+            </label>
+          </div>
 
-          <label className={styles.label}>
-            <span className={styles.labelText}>Your Phone</span>
-            <input
-              type="text"
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              placeholder="What's your contact number?"
-              className={styles.input}
-              required
-            />
-          </label>
+          {/* Row 2: Email & Phone */}
+          <div className={styles.formGrid}>
+            <label className={styles.label}>
+              <span className={styles.labelText}>Your Email *</span>
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="e.g. john@example.com"
+                className={styles.input}
+                required
+              />
+            </label>
 
+            <label className={styles.label}>
+              <span className={styles.labelText}>Your Phone / WhatsApp *</span>
+              <input
+                type="text"
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                placeholder="10-digit number"
+                className={styles.input}
+                required
+              />
+            </label>
+          </div>
+
+          {/* Row 3: Project Type & Estimated Budget */}
+          <div className={styles.formGrid}>
+            <label className={styles.label}>
+              <span className={styles.labelText}>Project Type</span>
+              <select
+                name="projectType"
+                value={form.projectType}
+                onChange={handleChange}
+                className={styles.select}
+              >
+                <option value="Full Stack Web App">Full Stack Web App (React + FastAPI/Node)</option>
+                <option value="React Native Mobile App">React Native Mobile App (Android / iOS)</option>
+                <option value="FastAPI / Python Backend">FastAPI / Python REST API Microservices</option>
+                <option value="Hospital Management System">Healthcare / Hospital Information System (HIS)</option>
+                <option value="Database & Architecture">PostgreSQL / Supabase Database Architecture</option>
+                <option value="UI/UX & Frontend Development">Modern Responsive Frontend & Web3D</option>
+                <option value="Other Custom Software">Other Custom Engineering Project</option>
+              </select>
+            </label>
+
+            <label className={styles.label}>
+              <span className={styles.labelText}>Estimated Budget</span>
+              <select
+                name="budget"
+                value={form.budget}
+                onChange={handleChange}
+                className={styles.select}
+              >
+                <option value="<$1,000">Less than $1,000 (INR 30K - 80K)</option>
+                <option value="$1,000 - $3,000">$1,000 - $3,000 (INR 80K - 2.5 Lakhs)</option>
+                <option value="$3,000 - $5,000">$3,000 - $5,000 (INR 2.5 - 4.5 Lakhs)</option>
+                <option value="$5,000+">$5,000+ (INR 4.5 Lakhs+)</option>
+                <option value="Flexible / Hourly">Flexible / Hourly Engagement</option>
+              </select>
+            </label>
+          </div>
+
+          {/* Row 4: Scheduled Meeting Date & Time */}
+          <div className={styles.scheduleBox}>
+            <div className={styles.scheduleHeader}>
+              <CalendarIcon />
+              <span>Schedule a Meeting / Discovery Call (Optional)</span>
+            </div>
+            <div className={styles.formGrid}>
+              <label className={styles.label}>
+                <span className={styles.labelText}>Preferred Date</span>
+                <input
+                  type="date"
+                  name="meetingDate"
+                  min={todayDate}
+                  value={form.meetingDate}
+                  onChange={handleChange}
+                  className={styles.input}
+                />
+              </label>
+
+              <label className={styles.label}>
+                <span className={styles.labelText}>Preferred Time Window</span>
+                <select
+                  name="meetingTime"
+                  value={form.meetingTime}
+                  onChange={handleChange}
+                  className={styles.select}
+                >
+                  <option value="09:00 AM - 11:00 AM">09:00 AM - 11:00 AM (IST)</option>
+                  <option value="11:00 AM - 01:00 PM">11:00 AM - 01:00 PM (IST)</option>
+                  <option value="02:00 PM - 04:00 PM">02:00 PM - 04:00 PM (IST)</option>
+                  <option value="04:00 PM - 06:00 PM">04:00 PM - 06:00 PM (IST)</option>
+                  <option value="06:00 PM - 08:00 PM">06:00 PM - 08:00 PM (IST)</option>
+                  <option value="08:00 PM - 10:00 PM">08:00 PM - 10:00 PM (IST)</option>
+                  <option value="Flexible / Anytime">Flexible / Any Time</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          {/* Row 5: Project Description */}
           <label className={styles.label}>
-            <span className={styles.labelText}>Your Message</span>
+            <span className={styles.labelText}>Project Scope / Message *</span>
             <textarea
               rows={4}
               name="message"
               value={form.message}
               onChange={handleChange}
-              placeholder="What do you want to say?"
+              placeholder="Describe your project goals, technical requirements, deliverables, or timeline..."
               className={styles.textarea}
               required
             />
           </label>
 
+          {/* Row 6: Document Upload */}
+          <div className={styles.fileUploadContainer}>
+            <span className={styles.labelText}>Attach Project Brief / Specifications (Optional)</span>
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.zip"
+              style={{ display: "none" }}
+              id="project-doc-upload"
+            />
+
+            {!attachedFile ? (
+              <label htmlFor="project-doc-upload" className={styles.uploadDropzone}>
+                <div className={styles.uploadIconCircle}>
+                  <UploadIcon />
+                </div>
+                <div className={styles.uploadTextWrap}>
+                  <span className={styles.uploadPrimaryText}>Click to upload project document</span>
+                  <span className={styles.uploadSecondaryText}>PDF, DOCX, TXT, PNG, JPG, or ZIP (Max 10MB)</span>
+                </div>
+              </label>
+            ) : (
+              <div className={styles.attachedFileBadge}>
+                <div className={styles.attachedFileInfo}>
+                  <FileCheckIcon />
+                  <div className={styles.attachedFileNameWrap}>
+                    <span className={styles.attachedFileName}>{attachedFile.name}</span>
+                    <span className={styles.attachedFileSize}>
+                      {(attachedFile.size / 1024).toFixed(1)} KB
+                    </span>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={removeFile}
+                  className={styles.removeFileBtn}
+                  title="Remove document"
+                >
+                  ✕
+                </button>
+              </div>
+            )}
+          </div>
+
           <button
             type="submit"
             className={styles.submitBtn}
+            disabled={loading}
           >
-            {loading ? "Sending..." : "Send Message"}
+            {loading ? "Submitting Inquiry..." : "🚀 Send Inquiry & Book Meeting"}
           </button>
         </form>
 
@@ -265,11 +516,17 @@ const Contact = () => {
       </motion.div>
 
       <motion.div
-        variants={fadeIn("up", "spring", 0.25, 0.75)}
+        variants={fadeIn("left", "tween", 0.1, 0.5)}
         className={styles.earthColumn}
       >
-        <div className={styles.earthContainer}>
-          <EarthCanvas />
+        <div className={styles.earthCard}>
+          <div className={styles.earthBadge}>
+            <span className={styles.liveDot} />
+            <span>Available for Global & Remote Work</span>
+          </div>
+          <div className={styles.earthContainer}>
+            <EarthCanvas />
+          </div>
         </div>
       </motion.div>
     </div>

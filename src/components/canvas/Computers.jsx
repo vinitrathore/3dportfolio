@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "./Loader";
 
-const Computers = ({ screenWidth }) => {
+const Computers = ({ isMobile, screenWidth }) => {
   const { scene } = useGLTF("/desktop_pc/scene.gltf");
 
   useEffect(() => {
@@ -20,10 +20,12 @@ const Computers = ({ screenWidth }) => {
 
   // Responsive scale and position centered in viewport
   const getResponsiveProps = (width) => {
-    if (width <= 500) {
-      return { scale: 0.48, position: [0, -3.0, -2.2], rotation: [-0.01, -0.2, -0.1] };
+    if (width <= 360) {
+      return { scale: 0.38, position: [0, -3.2, -2.2], rotation: [-0.01, -0.2, -0.1] };
+    } else if (width <= 500) {
+      return { scale: 0.44, position: [0, -3.2, -2.0], rotation: [-0.01, -0.2, -0.1] };
     } else if (width <= 768) {
-      return { scale: 0.58, position: [0, -3.1, -1.8], rotation: [-0.01, -0.2, -0.1] };
+      return { scale: 0.55, position: [0, -3.2, -1.8], rotation: [-0.01, -0.2, -0.1] };
     } else if (width <= 1024) {
       return { scale: 0.68, position: [0, -3.25, -1.5], rotation: [-0.01, -0.2, -0.1] };
     } else {
@@ -60,21 +62,36 @@ const ComputersCanvas = () => {
   const [screenWidth, setScreenWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 1200
   );
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setScreenWidth(window.innerWidth);
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setScreenWidth(width);
+      setIsMobile(width <= 768);
+    };
+
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <Canvas
-      frameloop="demand"
-      shadows
-      dpr={[1, 2]}
+      frameloop="always"
+      shadows={!isMobile}
+      dpr={isMobile ? [1, 1.5] : [1, 2]}
       camera={{ position: [20, 3, 5], fov: 25 }}
-      gl={{ preserveDrawingBuffer: true }}
-      style={{ cursor: "grab" }}
+      gl={{
+        preserveDrawingBuffer: true,
+        antialias: true,
+        powerPreference: "high-performance",
+      }}
+      style={{
+        cursor: "grab",
+        width: "100%",
+        height: "100%",
+      }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
@@ -82,8 +99,9 @@ const ComputersCanvas = () => {
           enablePan={false}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
+          rotateSpeed={0.8}
         />
-        <Computers screenWidth={screenWidth} />
+        <Computers isMobile={isMobile} screenWidth={screenWidth} />
       </Suspense>
 
       <Preload all />

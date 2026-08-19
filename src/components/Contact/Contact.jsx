@@ -87,18 +87,22 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     if (form.name && form.email && form.message && form.phone) {
       try {
-        const res = await fetch(urls.postUrl, {
+        const formData = new FormData();
+        formData.append("name", form.name);
+        formData.append("email", form.email);
+        formData.append("phone", form.phone);
+        formData.append("message", form.message);
+
+        // Use no-cors mode so Google Apps Script 302 redirect doesn't get blocked by browser CORS
+        await fetch(urls.postUrl, {
           method: "POST",
-          body: JSON.stringify(form),
+          mode: "no-cors",
+          body: formData,
         });
 
-        if (!res.ok) {
-          throw new Error(`HTTP error! Status: ${res.status}`);
-        }
-
-        await res.json();
         setForm({
           name: "",
           email: "",
@@ -106,14 +110,16 @@ const Contact = () => {
           phone: "",
         });
 
-        alert("Information sent successfully.");
+        alert("Thank you! Your message has been sent successfully.");
       } catch (error) {
-        console.error("Error:", error);
+        console.error("Error submitting contact form:", error);
+        alert("Oops! Something went wrong. Please reach out directly via email or phone.");
       } finally {
         setLoading(false);
       }
     } else {
       alert("Please fill in all required fields.");
+      setLoading(false);
     }
   };
 

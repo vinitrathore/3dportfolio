@@ -8,13 +8,25 @@
 }
 
 .header {
-  background-image: url("../assets/herobg.png");
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at 50% 25%, rgba(145, 94, 255, 0.18) 0%, transparent 65%),
+    radial-gradient(circle at 10% 80%, rgba(0, 206, 168, 0.08) 0%, transparent 50%),
+    url("../assets/herobg.png");
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center top;
   background-size: cover;
   position: relative;
   min-height: 100vh;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .header {
+    background-size: cover, cover, 100% 100%;
+    background-position: center top;
+    min-height: 100svh;
+  }
 }
 
 .container {

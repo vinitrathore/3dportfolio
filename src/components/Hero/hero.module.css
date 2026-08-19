@@ -289,13 +289,14 @@
 
 @media (max-width: 768px) {
   .heroSection {
-    min-height: 650px;
+    height: 100svh;
+    min-height: 580px;
   }
 
   .absoluteContainer {
-    top: 75px;
-    padding: 0 1.25rem;
-    justify-content: center;
+    top: 70px;
+    padding: 0 1rem;
+    justify-content: flex-start;
     align-items: flex-start;
   }
 
@@ -306,48 +307,60 @@
   .heroContent {
     align-items: flex-start;
     text-align: left;
+    gap: 0.5rem;
   }
 
   .heroHeaderRow {
-    gap: 12px;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: nowrap;
   }
 
   .heroProfileWrapper {
-    width: 68px;
-    height: 68px;
+    width: 58px;
+    height: 58px;
   }
 
   .heroHeadText {
-    font-size: 1.85rem;
+    font-size: 1.7rem;
   }
 
   .heroStatusPill {
-    font-size: 12px;
-    padding: 4px 10px;
+    font-size: 11.5px;
+    padding: 3px 10px;
+    min-height: 26px;
+    margin-top: 3px;
   }
 
   .heroSubText {
-    font-size: 0.98rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-top: 0.1rem;
   }
 
   .heroBtnGroup {
     gap: 8px;
+    margin-top: 0.4rem;
   }
 
   .resumeBtn, .contactBtn {
-    padding: 8px 16px;
-    font-size: 13px;
+    padding: 7px 14px;
+    font-size: 12.5px;
+    border-radius: 10px;
   }
 }
 
 @media (max-width: 480px) {
-  .heroHeaderRow {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+  .heroHeadText {
+    font-size: 1.45rem;
   }
 
-  .heroHeadText {
-    font-size: 1.6rem;
+  .heroProfileWrapper {
+    width: 52px;
+    height: 52px;
+  }
+
+  .heroSubText {
+    font-size: 0.86rem;
   }
 }
